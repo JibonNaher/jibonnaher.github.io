@@ -1,0 +1,105 @@
+<html>
+    <head>
+      <title>My Forum</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+      <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+      <link rel="stylesheet" href="myforum.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script>
+      function doSave(){
+          //Set the item in doSave()
+          var area = document.getElementById("comment");
+          localStorage.setItem("comment", area);
+
+          window.open('data:text/csv;charset=utf-8,' + escape(area));
+
+      }
+      $(document).ready(function(){
+        $(".post").hover(function(){
+          $(this).css("background-color", "#F5F5F5");
+          }, function(){
+          $(this).css("background-color", "white");
+        });
+
+        $(".post1").hover(function(){
+          $(this).css("background-color", "#F5F5F5");
+          }, function(){
+          $(this).css("background-color", "#808B96");
+        });
+
+        document.getElementById("comment").value = "Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.";
+        //textarea = document.getElementById("comment");
+        saveButton = document.getElementById("save");
+        saveButton.onclick = doSave;
+
+        // $("#q1").hover(function(){
+        //   $("#q11").css("visibility", "visible");
+        // }, function(){
+        //   $("#q11").css("visibility", "hidden");
+        // });
+
+      });
+      </script>
+    </head>
+    <body>
+      <div class="page-header">
+        <h1><a href="/">My Forum</a></h1>
+      </div>
+
+      <div class="content container">
+        <div class="row">
+          <div class="col-md-7">
+            <div class="post">
+                <p>published: 14.06.2014, 12:14</p>
+                <h2><a href="">My first post</a></h2>
+                <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+            </div>
+          </div>
+          <div class="col-md-5">
+
+          </div>
+        </div>
+        <div id = "q1" class="row">
+          <div class="col-md-7">
+            <div class="post1" style="padding-left:30px;  background-color: #808B96;">
+                <h2><a href="">My first comment</a></h2>
+                <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div id = "q11" style="padding-top:20px;">
+              <textarea class="form-control" rows="4" id="comment"></textarea>
+              <br/><button id="save" style="margin-top:-10px; float: right;">Save</button>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-7">
+            <div class="post" style="padding-left:60px; margin-bottom: 30px;">
+                <h2><a href="">My second comment</a></h2>
+                <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <!--<div id = "q11" style="padding-top:20px;">
+              <textarea class="form-control" rows="5" id="comment"></textarea>
+              <button type="button" class="btn btn-secondary" style="background-color:#808B96; margin-top:5px;">Save</button>
+            </div> -->
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-7">
+            <div class="post">
+                <h2><a href="">My first post</a></h2>
+                <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+            </div>
+          </div>
+          <div class="col-md-5">
+
+          </div>
+        </div>
+
+      </div>
+    </body>
+</html>
