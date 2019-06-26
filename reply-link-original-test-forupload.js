@@ -3,7 +3,7 @@
 //<nowiki>
 function loadOriginalBox( $, mw ) {
     var HEADER_SELECTOR = "h1,h2,h3,h4,h5,h6";
-    var TIMESTAMP_REGEX = /\(UTC(?:(?:−|\+)\d+?(?:\.\d+)?)?\)\S*?\s*$/m;
+    var TIMESTAMP_REGEX = /\(CEST(?:(?:−|\+)\d+?(?:\.\d+)?)?\)\S*?\s*$/m;
     var EDIT_REQ_REGEX = /^((Semi|Template|Extended-confirmed)-p|P)rotected edit request on \d\d? \w+ \d{4}/;
     var EDIT_REQ_TPL_REGEX = /\{\{edit (template|fully|extended|semi)-protected\s*(\|.+?)*\}\}/;
     var LITERAL_SIGNATURE = "~~" + "~~"; // split up because it might get processed
