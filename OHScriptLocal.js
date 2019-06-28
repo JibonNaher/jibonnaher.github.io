@@ -17,11 +17,17 @@ function loadOptionsforCheck( $, mw ) {
     var PARSOID_ENDPOINT = "https:" + mw.config.get( "wgServer" ) + "/api/rest_v1/page/html/";
     var HEADER_SELECTOR = "h1,h2,h3,h4,h5,h6";
     var Testoption = 7;         // should be come from the User API 
+    var Click_preview = 0;
     var Tox_level;              // 0: low (<0.35), 1: medium (0.35 to 0.75), 2: high (>0.75)
     var Try_number = 1;         // add new for the study 
-    var Ori_String = "";        // add new for the study 
-    var Use_Sugg;               // add new for the study
-    var Chng_Comment;           // add new for the study
+    var Ori_String_main = "";        // add new for the study 
+    var replied_String = "";
+    var Ori_String = "";            // add new for the study 
+    var Use_Sugg = 0;               // add new for the study
+    var Chng_Comment = 0;           // add new for the study
+
+    currentPageName = mw.config.get( "wgPageName" );
+    currentUserName = mw.config.get("wgUserName")
 
     // Threshold for indentation when we offer to outdent
     var OUTDENT_THRESH = 8;
@@ -1313,8 +1319,344 @@ function loadOptionsforCheck( $, mw ) {
      * Returns a Deferred that resolves/rejects when the reply succeeds/fails.
      */
 
-    function popupSurveyAfterReply(){
+    function popupSurveyForm(){
+        var popUpDiv = document.createElement("div");
+        popUpDiv.id = "form-survey-popup";
+        popUpDiv.style = "display: block; position: fixed; top: 0; right: 15px; border: 3px solid #f1f1f1; z-index: 1; background: white"
+        document.body.appendChild(popUpDiv);
 
+        // // Fetching HTML Elements in Variables by ID.
+
+        // var openelement = document.createElement('input'); // Append Open Button
+        // openelement.setAttribute("type", "button");
+        // openelement.setAttribute("name", "openbutton");
+        // openelement.setAttribute("value", "Open");
+        // openelement.setAttribute("display", "none");
+        // openelement.setAttribute("id", "popupOpenButton");
+        // popUpDiv.appendChild(openelement);
+
+        var popUpFormDiv = document.createElement("div");
+        popUpFormDiv.id = "form-survey-popup-div";
+        popUpFormDiv.style = "display: block; position: fixed; padding: 100px; top: 0; bottom: 0; left: 0; right: 0; border: 3px solid #f1f1f1; z-index: 999; background: rgba(90, 90, 90, 0.5);"
+        popUpDiv.appendChild(popUpFormDiv);
+
+        var popUpFormDiv1 = document.createElement("div");
+        popUpFormDiv1.style = "display: block; position: fixed; padding: 15px; border: 3px solid #f1f1f1; background: white;"
+        popUpFormDiv.appendChild(popUpFormDiv1);
+
+        var createform = document.createElement('form'); // Create New Element Form
+        //createform.setAttribute("action", ""); // Setting Action Attribute on Form
+        createform.setAttribute("method", "post"); // Setting Method Attribute on Form
+        //createform.setAttribute("id", "survey-form"); // Setting Method Attribute on Form
+        popUpFormDiv1.appendChild(createform);
+
+        var heading = document.createElement('h4'); // Heading of Form
+        heading.innerHTML = "Your reply was saved!! Let's have your opinion";
+        createform.appendChild(heading);
+
+        var line = document.createElement('hr'); // Giving Horizontal Row After Heading
+        createform.appendChild(line);
+
+        if(Chng_Comment){
+            var chngCommentLabel = document.createElement('label'); // Create Label for Name Field
+            chngCommentLabel.innerHTML = "Why did you change your original comment?"; // Set Field Labels
+            createform.appendChild(chngCommentLabel);
+
+            var linebreak = document.createElement('br');
+            createform.appendChild(linebreak);
+
+            if(Testoption == 1 || Testoption == 4||Testoption == 5||Testoption == 7){
+                var radiochngComment1 = document.createElement('input'); // Create Input Field for E-mail
+                radiochngComment1.setAttribute("type", "radio");
+                radiochngComment1.setAttribute("name", "chngComment");
+                radiochngComment1.setAttribute("id", "CC0");
+                radiochngComment1.setAttribute("value", "Tox_Score");
+                createform.appendChild(radiochngComment1);
+
+                var radiochngComment1Label = document.createElement('label'); // Create Label for Name Field
+                radiochngComment1Label.innerHTML = "By seeing the Toxicity Score";                 // Set Field Labels
+                createform.appendChild(radiochngComment1Label);
+
+                var linebreak = document.createElement('br');
+                createform.appendChild(linebreak);
+            }
+            if(Testoption == 2 || Testoption == 4||Testoption == 6||Testoption == 7){
+                var radiochngComment2 = document.createElement('input'); // Create Input Field for E-mail
+                radiochngComment2.setAttribute("type", "radio");
+                radiochngComment2.setAttribute("name", "chngComment");
+                radiochngComment2.setAttribute("id", "CC1");
+                radiochngComment2.setAttribute("value", "Feed_back");
+                createform.appendChild(radiochngComment2);
+
+                var radiochngComment2Label = document.createElement('label'); // Create Label for Name Field
+                radiochngComment2Label.innerHTML = "By seeing the Feedback";                 // Set Field Labels
+                createform.appendChild(radiochngComment2Label);
+
+                var linebreak = document.createElement('br');
+                createform.appendChild(linebreak);
+            }
+
+            if(Testoption == 3 || Testoption == 5||Testoption == 6||Testoption == 7){
+                var radiochngComment3 = document.createElement('input'); // Create Input Field for E-mail
+                radiochngComment3.setAttribute("type", "radio");
+                radiochngComment3.setAttribute("name", "chngComment");
+                radiochngComment3.setAttribute("id", "CC2");
+                radiochngComment3.setAttribute("value", "Sugg");
+                createform.appendChild(radiochngComment3);
+
+                var radiochngComment3Label = document.createElement('label'); // Create Label for Name Field
+                radiochngComment3Label.innerHTML = "By seeing the Suggestion";                 // Set Field Labels
+                createform.appendChild(radiochngComment3Label);
+
+                var linebreak = document.createElement('br');
+                createform.appendChild(linebreak);
+            }
+
+            if(Testoption == 4 || Testoption == 5||Testoption == 6||Testoption == 7){
+                var radiochngComment4 = document.createElement('input'); // Create Input Field for E-mail
+                radiochngComment4.setAttribute("type", "radio");
+                radiochngComment4.setAttribute("name", "chngComment");
+                radiochngComment4.setAttribute("id", "CC3");
+                radiochngComment4.setAttribute("value", "all");
+                createform.appendChild(radiochngComment4);
+
+                var radiochngComment4Label = document.createElement('label'); // Create Label for Name Field
+                radiochngComment4Label.innerHTML = "All of the above";                 // Set Field Labels
+                createform.appendChild(radiochngComment4Label);
+
+                var linebreak = document.createElement('br');
+                createform.appendChild(linebreak);
+            }
+            var radiochngComment5 = document.createElement('input'); // Create Input Field for E-mail
+            radiochngComment5.setAttribute("type", "radio");
+            radiochngComment5.setAttribute("name", "chngComment");
+            radiochngComment5.setAttribute("id", "CC4");
+            radiochngComment5.setAttribute("value", "none");
+            radiochngComment5.setAttribute("checked", "checked");
+            createform.appendChild(radiochngComment5);
+
+            var radiochngComment5Label = document.createElement('label'); // Create Label for Name Field
+            radiochngComment5Label.innerHTML = "None of the above";                 // Set Field Labels
+            createform.appendChild(radiochngComment5Label);
+
+            var linebreak = document.createElement('br');
+            createform.appendChild(linebreak);
+            var linebreak = document.createElement('br');
+            createform.appendChild(linebreak);
+        }
+
+        if(Use_Sugg){
+            var useSuggLabel = document.createElement('label'); // Create Label for Name Field
+            useSuggLabel.innerHTML = "Why did you use the suggestion?"; // Set Field Labels
+            createform.appendChild(useSuggLabel);
+
+            var linebreak = document.createElement('br');
+            createform.appendChild(linebreak);
+
+            var radioUseSugg1 = document.createElement('input'); // Create Input Field for E-mail
+            radioUseSugg1.setAttribute("type", "radio");
+            radioUseSugg1.setAttribute("name", "useSugg");
+            radioUseSugg1.setAttribute("id", "USS0");
+            radioUseSugg1.setAttribute("value", "Good");
+            radioUseSugg1.setAttribute("checked", "checked");
+            createform.appendChild(radioUseSugg1);
+
+            var radioUseSugg1Label = document.createElement('label'); // Create Label for Name Field
+            radioUseSugg1Label.innerHTML = "The suggestion was good";                 // Set Field Labels
+            createform.appendChild(radioUseSugg1Label);
+
+            var linebreak = document.createElement('br');
+            createform.appendChild(linebreak);
+
+            var radioUseSugg2 = document.createElement('input'); // Create Input Field for E-mail
+            radioUseSugg2.setAttribute("type", "radio");
+            radioUseSugg2.setAttribute("name", "useSugg");
+            radioUseSugg2.setAttribute("id", "USS1");
+            radioUseSugg2.setAttribute("value", "none");
+            createform.appendChild(radioUseSugg2);
+
+            var radioUseSugg2Label = document.createElement('label'); // Create Label for Name Field
+            radioUseSugg2Label.innerHTML = "Other";                 // Set Field Labels
+            createform.appendChild(radioUseSugg2Label);
+
+            var linebreak = document.createElement('br');
+            createform.appendChild(linebreak);
+            var linebreak = document.createElement('br');
+            createform.appendChild(linebreak);
+        }
+
+        if(Testoption == 1 || Testoption == 4||Testoption == 5||Testoption == 7){
+
+            var scoreLabel = document.createElement('label'); // Create Label for Name Field
+            scoreLabel.innerHTML = "Do you think showing the toxicity score was helpful to you?"; // Set Field Labels
+            createform.appendChild(scoreLabel);
+
+            var linebreak = document.createElement('br');
+            createform.appendChild(linebreak);
+
+            var radioScore1 = document.createElement('input'); // Create Input Field for E-mail
+            radioScore1.setAttribute("type", "radio");
+            radioScore1.setAttribute("name", "scoreH");
+            radioScore1.setAttribute("id", "S1");
+            radioScore1.setAttribute("value", "Yes");
+            radioScore1.setAttribute("checked", "checked");
+            createform.appendChild(radioScore1);
+
+            var radioScore1Label = document.createElement('label'); // Create Label for Name Field
+            radioScore1Label.innerHTML = "Yes";                 // Set Field Labels
+            createform.appendChild(radioScore1Label);
+
+            var radioScore2 = document.createElement('input'); // Create Input Field for E-mail
+            radioScore2.setAttribute("type", "radio");
+            radioScore2.setAttribute("name", "scoreH");
+            radioScore2.setAttribute("id", "S0");
+            radioScore2.setAttribute("value", "No");
+            createform.appendChild(radioScore2);
+
+            var radioScore2Label = document.createElement('label'); // Create Label for Name Field
+            radioScore2Label.innerHTML = "No";                 // Set Field Labels
+            createform.appendChild(radioScore2Label);
+
+            var linebreak = document.createElement('br');
+            createform.appendChild(linebreak);
+            var linebreak = document.createElement('br');
+            createform.appendChild(linebreak);
+
+        }
+
+        if(Testoption == 2 || Testoption == 4||Testoption == 6||Testoption == 7){
+
+            var feedbackLabel = document.createElement('label'); // Create Label for Name Field
+            feedbackLabel.innerHTML = "Do you think showing the feedback was helpful to you?"; // Set Field Labels
+            createform.appendChild(feedbackLabel);
+
+            var linebreak = document.createElement('br');
+            createform.appendChild(linebreak);
+
+            var radioFeedback1 = document.createElement('input'); // Create Input Field for E-mail
+            radioFeedback1.setAttribute("type", "radio");
+            radioFeedback1.setAttribute("name", "feedbackH");
+            radioFeedback1.setAttribute("id", "F1");
+            radioFeedback1.setAttribute("value", "Yes");
+            radioFeedback1.setAttribute("checked", "checked");
+            createform.appendChild(radioFeedback1);
+
+            var feedbackScore1Label = document.createElement('label'); // Create Label for Name Field
+            feedbackScore1Label.innerHTML = "Yes";                 // Set Field Labels
+            createform.appendChild(feedbackScore1Label);
+
+            var radioFeedback2 = document.createElement('input'); // Create Input Field for E-mail
+            radioFeedback2.setAttribute("type", "radio");
+            radioFeedback2.setAttribute("name", "feedbackH");
+            radioFeedback2.setAttribute("id", "F0");
+            radioFeedback2.setAttribute("value", "No");
+            createform.appendChild(radioFeedback2);
+
+            var feedbackScore2Label = document.createElement('label'); // Create Label for Name Field
+            feedbackScore2Label.innerHTML = "No";                 // Set Field Labels
+            createform.appendChild(feedbackScore2Label);
+
+            var linebreak = document.createElement('br');
+            createform.appendChild(linebreak);
+            var linebreak = document.createElement('br');
+            createform.appendChild(linebreak);
+        }
+
+        if(Testoption == 3 || Testoption == 5||Testoption == 6||Testoption == 7){
+            var suggestionLabel = document.createElement('label'); // Create Label for Name Field
+            suggestionLabel.innerHTML = "Do you think showing the suggestion was helpful to you?"; // Set Field Labels
+            createform.appendChild(suggestionLabel);
+
+            var linebreak = document.createElement('br');
+            createform.appendChild(linebreak);
+
+            var radioSuggestion1 = document.createElement('input'); // Create Input Field for E-mail
+            radioSuggestion1.setAttribute("type", "radio");
+            radioSuggestion1.setAttribute("name", "suggH");
+            radioSuggestion1.setAttribute("id", "Su1");
+            radioSuggestion1.setAttribute("value", "Yes");
+            radioSuggestion1.setAttribute("checked", "checked");
+            createform.appendChild(radioSuggestion1);
+
+            var suggestionScore1Label = document.createElement('label'); // Create Label for Name Field
+            suggestionScore1Label.innerHTML = "Yes";                 // Set Field Labels
+            createform.appendChild(suggestionScore1Label);
+
+            var radioSuggestion2 = document.createElement('input'); // Create Input Field for E-mail
+            radioSuggestion2.setAttribute("type", "radio");
+            radioSuggestion2.setAttribute("name", "suggH");
+            radioSuggestion2.setAttribute("id", "Su0");
+            radioSuggestion2.setAttribute("value", "No");
+            createform.appendChild(radioSuggestion2);
+
+            var suggestionScore2Label = document.createElement('label'); // Create Label for Name Field
+            suggestionScore2Label.innerHTML = "No";                 // Set Field Labels
+            createform.appendChild(suggestionScore2Label);
+
+            var linebreak = document.createElement('br');
+            createform.appendChild(linebreak);
+            var linebreak = document.createElement('br');
+            createform.appendChild(linebreak);
+        }
+
+        var submitButton = document.createElement('input'); // Append Submit Button
+        submitButton.style = "margin: 10px;";
+        submitButton.setAttribute("type", "submit");
+        submitButton.setAttribute("value", "Submit");
+        submitButton.setAttribute("id","dataSubmit");
+        createform.appendChild(submitButton);
+
+        // var closeButton = document.createElement('input'); // Append Submit Button
+        // closeButton.style = "margin: 10px;";
+        // closeButton.setAttribute("type", "button");
+        // closeButton.setAttribute("name", "closebutton");
+        // closeButton.setAttribute("value", "Close");
+        // closeButton.setAttribute("id", "popupCloseButton1");
+        // createform.appendChild(closeButton);
+
+        $("#dataSubmit").click(function(){
+
+            // const APIURL = 'http://127.0.0.1:8000/userapi/testdata/';   
+
+            var data = {};
+            data.user_name = currentUserName;
+            data.page_name = currentPageName;
+            data.ori_comment = Ori_String_main;
+            data.replied_comment = replied_String;
+            data.data_test_option = Testoption;
+            data.change_comment = Chng_Comment;
+            data.use_suggestion = Use_Sugg;
+
+            if(Chng_Comment){
+                data.change_comment_why = $("input[name='chngComment']:checked").val();
+            }
+            else{
+                data.change_comment_why = "";
+            }
+            if(Use_Sugg){
+                data.use_suggestion_why = $("input[name='useSugg']:checked").val();
+            }
+            else{
+                data.use_suggestion_why = "";
+            }
+
+            if(Testoption == 1 || Testoption == 4||Testoption == 5||Testoption == 7){
+                data.score_helpful = ($("input[name='scoreH']:checked").val()=="Yes")? 1:0;
+                //console.log(radioValue);
+            }
+            if(Testoption == 2 || Testoption == 4||Testoption == 6||Testoption == 7){
+                data.feedback_helpful = ($("input[name='feedbackH']:checked").val()=="Yes")? 1:0;
+                //console.log(radioValue);
+            }
+            if(Testoption == 3 || Testoption == 5||Testoption == 6||Testoption == 7){
+                data.suggestion_helpful = ($("input[name='suggH']:checked").val()=="Yes")?1:0;
+                //console.log(radioValue);
+            }
+
+            console.log(data);
+
+            // var json = JSON.stringify(data);
+        });
     }
     
     function doReply( indentation, header, sigIdx, cmtAuthorDom, rplyToXfdNom, revObj, findSectionResult ) {
@@ -1328,6 +1670,11 @@ function loadOptionsforCheck( $, mw ) {
 
             // Generate reply in wikitext form
             var reply = document.getElementById( "reply-dialog-field" ).value.trim();
+            replied_String = reply;
+
+            if(Ori_String_main!="" && reply!=Ori_String_main){
+                Chng_Comment = 1;
+            }
 
             // Add a signature if one isn't already there
             if( !hasSig( reply ) ) {
@@ -1505,6 +1852,11 @@ function loadOptionsforCheck( $, mw ) {
                         }
 
                         deferred.resolve();
+
+                        // if(Click_preview == 1 && Testoption!=0){
+                        //     popupSurveyForm();
+                        // }  
+
                     }
 
                     if( needPurge ) {
@@ -1576,6 +1928,11 @@ function loadOptionsforCheck( $, mw ) {
                 } else {
 
                     // We've already cancelled the reply
+                    if($('#reply-link-panel_1').length!=0){
+                        console.log("not removed yet");
+                        Try_number = 1;
+                        $('#reply-link-panel_1').remove();
+                    }
                     newLink.textContent = linkLabel;
                     evt.preventDefault();
                     return false;
@@ -1692,6 +2049,10 @@ function loadOptionsforCheck( $, mw ) {
                 // Enter/Ctrl-Enter in the summary field
                 function startReply() {
 
+                    if(Click_preview == 1 && Testoption!=0){
+                        popupSurveyForm();
+                    } 
+
                     // Change UI to make it clear we're performing an operation
                     document.getElementById( "reply-dialog-field" ).style["background-image"] =
                         "url(" + window.replyLinkPendingImageUrl + ")";
@@ -1729,7 +2090,7 @@ function loadOptionsforCheck( $, mw ) {
                 //             startReply();
                 //         }
                 //         else{
-                //             testTextOutput = document.getElementById( "reply-dialog-field" ).value;     // new add
+                //             testTextOutput = document.getElementById( "reply-dialog-field" ).value.trim();     // new add
                 //             //testTextOutput += e.key;            // new add
                 //             console.log(wikitextToTextContent(testTextOutput));         // new add
                 //         }
@@ -1780,15 +2141,25 @@ function loadOptionsforCheck( $, mw ) {
                 document.getElementById( "reply-link-preview-button" )
                     .addEventListener( "click", function () {
 
+                        Click_preview = 1;
+
                         if(Testoption != 0){
 
                             // add new: create panel 
-                            var textString = document.getElementById( "reply-dialog-field" ).value ;
+                            var textString = document.getElementById( "reply-dialog-field" ).value.trim();
+                            console.log("textString with trim: "+textString);
+
+                            var textString = document.getElementById( "reply-dialog-field" ).value;
+                            console.log("textString: "+textString);
 
                             var cur_div =  document.getElementById('reply-link-panel');
 
                             if((Try_number == 1) || (textString!=Ori_String)){
                                 // add new: call perspectiveAPI
+
+                                if(Try_number == 1){
+                                    Ori_String_main = textString;
+                                }
 
                                 Try_number +=1;
                                 Ori_String = textString ;
@@ -1804,7 +2175,7 @@ function loadOptionsforCheck( $, mw ) {
                                     "<span id = 'toxicity-span'>Toxicity Score: </span>" +
                                     "<span id = 'toxicity-span-1' style = 'font-weight: bold'> </span>" +
                                     "<p id = 'toxicity-score-p'> </p>" +
-                                    "<p id = 'feedback-p'> </p>"+
+                                    "<p id = 'feedback-p'></p>"+
                                     "<p id ='sugg-com-box-p' style = 'text-decoration: underline'>Suggested Comment: </p>" +
                                     "<p id = 'sugg-com-p' style = 'font-style: italic'> Suggested Comment</p>" +
                                     "</div> "+
@@ -1819,9 +2190,13 @@ function loadOptionsforCheck( $, mw ) {
 
                                 $("#ori-com-p").text("\""+textString+"\"");
             
-                                // mw.util.addCSS(
-                                //     "#reply-link-panel_1 { display:none;} "
-                                // );
+                                mw.util.addCSS(
+                                    "#reply-link-panel_1 { display:none;} "+
+                                    "#use-suggestion {display : none}"+
+                                    "#use-original {display : none}"+
+                                    "#sugg-com-box-p {display : none}"+
+                                    "#sugg-com-p {display: none}"
+                                );
                             
                                 const API_KEY = 'AIzaSyDXuNaU-cLxLU9eZGNnQsphvfqqyMELWJw';
 
@@ -1867,23 +2242,27 @@ function loadOptionsforCheck( $, mw ) {
                                         }
                                         if(Testoption == 2||Testoption == 4||Testoption == 6||Testoption == 7){         // showing feedback
                                             if(Tox_level == 0){
-                                                $("#feedback-p").text("Your comment is likely to follow community rules and norms");
+                                                $("#feedback-p").text("Feedback: Your comment is likely to follow community rules and norms");
                                             }
                                             else if(Tox_level == 1){
-                                                $("#feedback-p").text("It is unsure whether your comment follow community rules and norms");
+                                                $("#feedback-p").text("Feedback: It is unsure whether your comment follow community rules and norms");
                                             }
                                             else{
-                                                $("#feedback-p").text("Your commeny may violate community rules and norms");
+                                                $("#feedback-p").text("Feedback: Your commeny may violate community rules and norms");
                                             }
                                         }
                                         if(Testoption == 3||Testoption == 5||Testoption == 6||Testoption == 7){    // showing suggestion
                                             $("#sugg-com-box-p").show();
                                             $("#sugg-com-p").show();
+                                            $("#use-suggestion").show();
+                                            $("#use-original").show();
                                             // show suggestion collectde from crowdworker 
                                         } 
                                         else{
                                             $("#sugg-com-box-p").hide();
                                             $("#sugg-com-p").hide();
+                                            $("#use-suggestion").hide();
+                                            $("#use-original").hide();
                                         }
 
                                         $("#use-original").click(function(){
@@ -1896,12 +2275,14 @@ function loadOptionsforCheck( $, mw ) {
                                             console.log(suggestionText);
                                             $("#reply-link-panel_1").remove();
                                             cur_div.style.display = "block";
-                                            $("#reply-dialog-field").val(suggestionText);   
+                                            $("#reply-dialog-field").val(suggestionText);  
+                                            Use_Sugg = 1; 
                                         });
 
                                         $("#reply-link-cancel-button_1").click(function(){
                                             $("#reply-link-panel_1").remove();
                                             cur_div.style.display = "block";
+                                            Use_Sugg = 0;
                                         });
 
                                         // document.getElementById("use-original").addEventListener( "click", function () {
@@ -2072,6 +2453,13 @@ function loadOptionsforCheck( $, mw ) {
                         Try_number = 1;
                         newLink.textContent = linkLabel;
                         panelEl.remove();
+                        // if ($.contains(document, $("#reply-link-panel_1"))) {
+                        //     panelEl1.remove();
+                        // }
+                        // if($('#reply-link-panel_1').length!=0){
+                        //     console.log("not removed yet");
+                        //     panelEl1.remove();
+                        // }
                     } );
 
                 // Event listeners for the custom edit summary field
@@ -2341,111 +2729,6 @@ function loadOptionsforCheck( $, mw ) {
         }
     }
 
-    // function popupForm(){
-    //     var popUpDiv = document.createElement("div");
-    //     popUpDiv.id = "form-div";
-    //     popUpDiv.style = "display: block; position: fixed; top: 0; bottom: 0; left: 0; right: 0; border: 3px solid #f1f1f1; z-index: 999; background: rgba(90, 90, 90, 0.5);"
-    //     document.body.appendChild(popUpDiv);
-
-    //     // Fetching HTML Elements in Variables by ID.
-
-    //     var openelement = document.createElement('input'); // Append Open Button
-    //     openelement.setAttribute("type", "button");
-    //     openelement.setAttribute("name", "openbutton");
-    //     openelement.setAttribute("value", "Open");
-    //     openelement.setAttribute("display", "none");
-    //     openelement.setAttribute("id", "popupOpenButton");
-    //     popUpDiv.appendChild(openelement);
-
-    //     var createform = document.createElement('form'); // Create New Element Form
-    //     createform.setAttribute("id", "form-popup");
-    //     createform.setAttribute("action", ""); // Setting Action Attribute on Form
-    //     createform.setAttribute("method", "post"); // Setting Method Attribute on Form
-    //     //createform.setAttribute("id", "survey-form"); // Setting Method Attribute on Form
-    //     popUpDiv.appendChild(createform);
-
-    //     var closeelement = document.createElement('input'); // Append Submit Button
-    //     closeelement.setAttribute("type", "button");
-    //     closeelement.setAttribute("name", "closebutton");
-    //     closeelement.setAttribute("value", "Close");
-    //     closeelement.setAttribute("id", "popupCloseButton");
-    //     createform.appendChild(closeelement);
-
-    //     var heading = document.createElement('h2'); // Heading of Form
-    //     heading.innerHTML = "Survey Form";
-    //     createform.appendChild(heading);
-
-    //     var line = document.createElement('hr'); // Giving Horizontal Row After Heading
-    //     createform.appendChild(line);
-
-    //     var linebreak = document.createElement('br');
-    //     createform.appendChild(linebreak);
-
-    //     var ageLabel = document.createElement('label'); // Create Label for Name Field
-    //     ageLabel.innerHTML = "Your age in year: "; // Set Field Labels
-    //     createform.appendChild(ageLabel);
-
-    //     var inputelement = document.createElement('input'); // Create Input Field for Name
-    //     inputelement.setAttribute("type", "number");
-    //     inputelement.setAttribute("min", "18");
-    //     inputelement.setAttribute("name", "100");
-    //     createform.appendChild(inputelement);
-
-    //     var linebreak = document.createElement('br');
-    //     createform.appendChild(linebreak);
-
-    //     var emaillabel = document.createElement('label'); // Create Label for E-mail Field
-    //     emaillabel.innerHTML = "Highest education : ";
-    //     createform.appendChild(emaillabel);
-
-    //     var eduelement = document.createElement('input'); // Create Input Field for E-mail
-    //     eduelement.setAttribute("type", "text");
-    //     eduelement.setAttribute("name", "edu");
-    //     createform.appendChild(eduelement);
-
-    //     var emailbreak = document.createElement('br');
-    //     createform.appendChild(emailbreak);
-
-    //     var messagelabel = document.createElement('label'); // Append Textarea
-    //     messagelabel.innerHTML = "How many years are you using wikipedia as editor: ";
-    //     createform.appendChild(messagelabel);
-
-    //     var inputelement1 = document.createElement('input'); // Create Input Field for Name
-    //     inputelement1.setAttribute("type", "number");
-    //     inputelement1.setAttribute("min", "1");
-    //     inputelement1.setAttribute("name", "100");
-    //     createform.appendChild(inputelement1);
-
-    //     var messagebreak = document.createElement('br');
-    //     createform.appendChild(messagebreak);
-
-    //     var submitelement = document.createElement('input'); // Append Submit Button
-    //     submitelement.setAttribute("type", "submit");
-    //     submitelement.setAttribute("name", "dsubmit");
-    //     submitelement.setAttribute("value", "Submit");
-    //     createform.appendChild(submitelement);
-
-    //     mw.util.addCSS(
-    //         "#popUpDiv { padding: 1em; margin-left: 1.6em;} " +
-    //         "#popupOpenButton { display: none;} "
-    //     );
-
-    //     document.getElementById( "popupCloseButton" )
-    //         .addEventListener( "click", function () {
-    //             $("#form-div").fadeOut(200);
-    //             //createform.style.display = "none";
-    //             openelement.style.display = "block";
-
-    //     });
-
-    //     document.getElementById( "popupOpenButton" )
-    //         .addEventListener( "click", function () {
-    //             $("#form-div").fadeTo(200, 1);
-    //             //createform.style.display = "block";
-    //             openelement.style.display = "none";
-    //     });
-    // }
-
     function popupForm(){
         var popUpDiv = document.createElement("div");
         popUpDiv.id = "form-popup";
@@ -2468,12 +2751,12 @@ function loadOptionsforCheck( $, mw ) {
         document.body.appendChild(popUpFormDiv);
 
         var popUpFormDiv1 = document.createElement("div");
-        popUpFormDiv1.style = "display: block; position: fixed; border: 3px solid #f1f1f1; background: white;"
+        popUpFormDiv1.style = "display: block; position: fixed; padding: 15px; border: 3px solid #f1f1f1; background: white;"
         popUpFormDiv.appendChild(popUpFormDiv1);
 
         var createform = document.createElement('form'); // Create New Element Form
-        createform.setAttribute("action", ""); // Setting Action Attribute on Form
-        createform.setAttribute("method", "post"); // Setting Method Attribute on Form
+        //createform.setAttribute("action", "");     // Setting Action Attribute on Form
+        createform.setAttribute("method", "post");    // Setting Method Attribute on Form
         //createform.setAttribute("id", "survey-form"); // Setting Method Attribute on Form
         popUpFormDiv1.appendChild(createform);
 
@@ -2485,7 +2768,7 @@ function loadOptionsforCheck( $, mw ) {
         createform.appendChild(closeelement);
 
         var heading = document.createElement('h2'); // Heading of Form
-        heading.innerHTML = "Survey Form";
+        heading.innerHTML = "Pre-Survey Form";
         createform.appendChild(heading);
 
         var line = document.createElement('hr'); // Giving Horizontal Row After Heading
@@ -2501,7 +2784,8 @@ function loadOptionsforCheck( $, mw ) {
         var inputelement = document.createElement('input'); // Create Input Field for Name
         inputelement.setAttribute("type", "number");
         inputelement.setAttribute("min", "18");
-        inputelement.setAttribute("name", "100");
+        inputelement.setAttribute("max", "150");
+        inputelement.setAttribute("name", "age");
         createform.appendChild(inputelement);
 
         var linebreak = document.createElement('br');
@@ -2526,13 +2810,15 @@ function loadOptionsforCheck( $, mw ) {
         var inputelement1 = document.createElement('input'); // Create Input Field for Name
         inputelement1.setAttribute("type", "number");
         inputelement1.setAttribute("min", "1");
-        inputelement1.setAttribute("name", "100");
+        inputelement1.setAttribute("max", "100");
+        inputelement1.setAttribute("name", "editHistory");
         createform.appendChild(inputelement1);
 
         var messagebreak = document.createElement('br');
         createform.appendChild(messagebreak);
 
         var submitelement = document.createElement('input'); // Append Submit Button
+        submitelement.setAttribute("id", "popupSubmitButton");
         submitelement.setAttribute("type", "submit");
         submitelement.setAttribute("name", "dsubmit");
         submitelement.setAttribute("value", "Submit");
@@ -2543,19 +2829,42 @@ function loadOptionsforCheck( $, mw ) {
             "#popupOpenButton { display: none;} "
         );
 
-        document.getElementById( "popupCloseButton" )
-            .addEventListener( "click", function () {
-                $("#form-popup-div").fadeOut(200);
+        $("#popupCloseButton" ).click(function(){
+            $("#form-popup-div").fadeOut(200);
                 //createform.style.display = "none";
-                openelement.style.display = "block";
-
+            openelement.style.display = "block";
         });
 
-        document.getElementById( "popupOpenButton" )
-            .addEventListener( "click", function () {
-                $("#form-popup-div").fadeTo(200, 1);
+        $( "#popupOpenButton" ).click(function(){
+            $("#form-popup-div").fadeTo(200, 1);
                 //createform.style.display = "block";
-                openelement.style.display = "none";
+            openelement.style.display = "none";
+        });
+
+        $("#popupSubmitButton").click(function(){
+            console.log($("input[name]='age']").val());
+            console.log($("input[name='edu']").val());
+            console.log($("input[name='editHistory']").val());
+
+            // const APIURL = 'http://127.0.0.1:8000/userapi/';   
+
+            // var data = {};
+            // data.username = "TestPopupsurvey";
+            // data.test_option  = 2;
+            // var json = JSON.stringify(data);
+
+            // var xhr = new XMLHttpRequest();
+            // xhr.open("POST", APIURL, true);
+            // xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
+            // xhr.onload = function () {
+            //     var users = JSON.parse(xhr.responseText);
+            //     if (xhr.readyState == 4 && xhr.status == "201") {
+            //         console.table(users);
+            //     } else {
+            //         console.error(users);
+            //     }
+            // }
+            // xhr.send(json);
         });
     }
 
