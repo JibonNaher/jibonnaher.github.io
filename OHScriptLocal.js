@@ -16,6 +16,7 @@ function loadOptionsforCheck( $, mw ) {
     var LITERAL_SIGNATURE = "~~" + "~~"; // split up because it might get processed
     var PARSOID_ENDPOINT = "https:" + mw.config.get( "wgServer" ) + "/api/rest_v1/page/html/";
     var HEADER_SELECTOR = "h1,h2,h3,h4,h5,h6";
+    var Study_group = 0;
     var Testoption = 7;         // should be come from the User API 
     var Click_preview = 0;
     var Tox_level;              // 0: low (<0.35), 1: medium (0.35 to 0.75), 2: high (>0.75)
@@ -2907,12 +2908,13 @@ function loadOptionsforCheck( $, mw ) {
         uName = mw.config.get( "wgUserName" )
         console.log(uName)
 
-        var submitInfo = false;   // should be come from database
+        var submitInfo = true;   // should be come from database
         
         if(uName != null){
             // Insert "reply" links into DOM
             attachLinks();
-            const analyzeURL = 'http://127.0.0.1:8000/userapi/?username='+mw.config.get( "wgUserName" )+'';           // local API for userinfo
+            const analyzeURL = 'http://127.0.0.1:8000/userapi/user/?user_name='+mw.config.get( "wgUserName" )+'';           // local API for userinfo
+            //const analyzeURL = 'http://127.0.0.1:8000/userapi/user/?user_name=hello';           // local API for userinfo
             const x = new XMLHttpRequest();
             x.open('GET', analyzeURL);
             x.setRequestHeader('Content-Type', 'application/json');
@@ -2922,28 +2924,34 @@ function loadOptionsforCheck( $, mw ) {
                     if((this.response.length == 0))
                     {
                         //popupForm();
-                        var data = {};
-                        data.username = uName;
-                        data.test_option  = 1;
-                        var json = JSON.stringify(data);
+                        // var data = {};
+                        // data.user_name = uName;
+                        // data.study_group = 0;
+                        // data.test_option  = 1;
+                        // var json = JSON.stringify(data);
 
-                        var xhr = new XMLHttpRequest();
-                        xhr.open("POST", analyzeURL, true);
-                        xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
-                        xhr.onload = function () {
-                            var users = JSON.parse(xhr.responseText);
-                            if (xhr.readyState == 4 && xhr.status == "201") {
-                                console.table(users);
-                            } else {
-                                console.error(users);
-                            }
-                        }
-                        xhr.send(json);
+                        // var xhr = new XMLHttpRequest();
+                        // xhr.open("POST", analyzeURL, true);
+                        // xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
+                        // xhr.onload = function () { 
+                        //     if (xhr.readyState == 4 && xhr.status == "201") {
+                        //         var users = JSON.parse(xhr.responseText);
+                        //         console.table(users);
+                        //     } else {
+                        //         console.log("not found");
+                        //     }
+                        // }
+                        // xhr.send(json);
                     }
+                    // else{
+                    //     Study_group = this.response.
+                    // }
                     else if(submitInfo == false){
                         //popupForm();
                     }
                     else{
+                        Study_group = this.response.study_group;
+                        Testoption = this.response.test_option;
                         console.log(this.response);
                     }
                 }
