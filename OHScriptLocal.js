@@ -2178,7 +2178,9 @@ function loadOptionsforCheck( $, mw ) {
                                     "<p id = 'toxicity-score-p'> </p>" +
                                     "<p id = 'feedback-p'></p>"+
                                     "<p id ='sugg-com-box-p' style = 'text-decoration: underline'>Suggested Comment: </p>" +
-                                    "<p id = 'sugg-com-p' style = 'font-style: italic'> Suggested Comment</p>" +
+                                    "<p id = 'sugg-com-p1' style = 'font-style: italic'> 1. Suggested Comment</p>" +
+                                    "<p id = 'sugg-com-p2' style = 'font-style: italic'> 2. Suggested Comment</p>" +
+                                    "<p id = 'sugg-com-p3' style = 'font-style: italic'> 3. Suggested Comment</p>" +
                                     "</div> "+
                                     "<table style = 'border-collapse:collapse'><tr><td id='reply-link-buttons_1'>" +
                                     "<button id = 'use-suggestion' class='mw-ui-button mw-ui-progressive'>Use Suggested one</button> " +
@@ -2196,7 +2198,7 @@ function loadOptionsforCheck( $, mw ) {
                                     "#use-suggestion {display : none}"+
                                     "#use-original {display : none}"+
                                     "#sugg-com-box-p {display : none}"+
-                                    "#sugg-com-p {display: none}"
+                                    "#sugg-com-p1 {display: none}"
                                 );
                             
                                 const API_KEY = 'AIzaSyDXuNaU-cLxLU9eZGNnQsphvfqqyMELWJw';
@@ -2205,7 +2207,7 @@ function loadOptionsforCheck( $, mw ) {
                                 const x = new XMLHttpRequest();
                                 const composedComment = `{comment: {text: "${textString}"},
                                     languages: ["en"],
-                                    requestedAttributes: {TOXICITY:{}} }`;
+                                    requestedAttributes: {TOXICITY:{}, PROFANITY:{}, IDENTITY_ATTACK:{}, INSULT:{},THREAT:{},SEXUALLY_EXPLICIT:{},FLIRTATION:{}} }`;
                                 // Adds the required HTTP header for form data POST requests.
                                 x.open('POST', analyzeURL, true);
                                 x.setRequestHeader('Content-Type', 'application/json');
@@ -2254,14 +2256,18 @@ function loadOptionsforCheck( $, mw ) {
                                         }
                                         if(Testoption == 3||Testoption == 5||Testoption == 6||Testoption == 7){    // showing suggestion
                                             $("#sugg-com-box-p").show();
-                                            $("#sugg-com-p").show();
+                                            $("#sugg-com-p1").show();
+                                            $("#sugg-com-p2").show();
+                                            $("#sugg-com-p3").show();
                                             $("#use-suggestion").show();
                                             $("#use-original").show();
-                                            // show suggestion collectde from crowdworker 
+                                            // ////////    show suggestion collectde from crowdworker 
                                         } 
                                         else{
                                             $("#sugg-com-box-p").hide();
-                                            $("#sugg-com-p").hide();
+                                            $("#sugg-com-p1").hide();
+                                            $("#sugg-com-p2").hide();
+                                            $("#sugg-com-p3").hide();
                                             $("#use-suggestion").hide();
                                             $("#use-original").hide();
                                         }

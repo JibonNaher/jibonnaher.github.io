@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Add a gray background color with some padding */
+body {
+  font-family: Arial;
+  padding: 20px;
+  background: #f1f1f1;
+}
+
+/* Header/Blog Title */
+.header {
+  padding: 30px;
+  font-size: 40px;
+  text-align: center;
+  background: white;
+}
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {
+  float: left;
+  width: 70%;
+}
+
+/* Right column */
+.rightcolumn {
+  float: left;
+  width: 30%;
+  padding-left: 20px;
+}
+
+/* Fake image */
+.fakeimg {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Add a card effect for articles */
+.card {
+   background-color: white;
+   padding: 20px;
+   margin-top: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Footer */
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: #ddd;
+  margin-top: 20px;
+}
+.commentDiv{
+  padding-left: 20px;
+}
+.textareaClass{
+  rows: 5;
+  width: 70%;
+  height: 100px;
+  font-size: 15px;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+  .leftcolumn, .rightcolumn {
+    width: 100%;
+    padding: 0;
+  }
+}
+</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div class="row">
+  <h1> Check real time feedback as you are commenting</h1>
+  <div class="leftcolumn">
+    <div class="card">
+      <!-- need to set -->
+      <h2>A topic for discussion</h2>
+      <p>"Description of the topic"Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco.
+      </p>
+    </div>
+  </div>
+  <div class="leftcolumn">
+    <div class="card">
+      <!-- need to set -->
+      <div class = "commentDiv">
+        <h4>Your comment </h4>
+        <textarea class = "textareaClass" name="comment" id = "inputText" placeholder="Enter text here..."></textarea>
+        <button type="button" id = "checkBtn" class="btn btn-secondary">Check</button>
+        <br>
+        <br>
+        <h4>Previous comments </h4>
+        <p>"Description of the topic"Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit,
+          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco.</p>
+        <hr>
+        <p>"Description of the topic"Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit,
+          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco.</p>
+        <hr>
+        <p>"Description of the topic"Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit,
+          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco.</p>
+        <hr>
+      </div>
+    </div>
+  </div>
+  <div class="rightcolumn">
+    <div class="card">
+      <h4>Check Feedback on your comment</h4>
+      <span>TOXICITY score: <span id = "tox_score"></span></span>
+      <span>PROFANITY score: <span id = "profanity_score"></span></span>
+      <span>IDENTITY_ATTACK score: <span id = "idattack_score"></span></span>
+      <span>INSULT score: <span id = "insult_score"></span></span>
+      <span>THREAT score: <span id = "threat_score"></span></span>
+      <span>SEXUALLY_EXPLICIT score: <span id = "sexexplicit_score"></span></span>
+      <span>FLIRTATION score: <span id = "flirtation_score"></span></span>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <h2>Footer</h2>
+</div>
+
+</body>
+
+
+<script>
+
+  document.getElementById( "inputText" ).addEventListener( "keydown", function ( e ) {
+      if( e.keyCode == 10 || e.keyCode == 13 ) {
+        var textString = document.getElementById( "inputText" ).value.trim();
+        const API_KEY = 'AIzaSyDXuNaU-cLxLU9eZGNnQsphvfqqyMELWJw';
+        const analyzeURL = 'https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key=' + API_KEY;
+        const x = new XMLHttpRequest();
+        const composedComment = `{comment: {text: "${textString}"},
+            languages: ["en"],
+            requestedAttributes: {TOXICITY:{}, PROFANITY:{}, IDENTITY_ATTACK:{}, INSULT:{},THREAT:{},SEXUALLY_EXPLICIT:{},FLIRTATION:{}} }`;
+        // Adds the required HTTP header for form data POST requests.
+        x.open('POST', analyzeURL, true);
+        x.setRequestHeader('Content-Type', 'application/json');
+        x.responseType = 'json';
+        x.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(this.response);
+                if(this.response.attributeScores.TOXICITY.summaryScore.value>0.5){
+                  $("#tox_score").css("backgroundColor", "#CD5C5C");
+                }
+                $("#tox_score").text(this.response.attributeScores.TOXICITY.summaryScore.value);
+
+                if(this.response.attributeScores.PROFANITY.summaryScore.value>0.5){
+                  $("#profanity_score").css("backgroundColor","#CD5C5C");
+                }
+                $("#profanity_score").text(this.response.attributeScores.PROFANITY.summaryScore.value);
+
+                if(this.response.attributeScores.IDENTITY_ATTACK.summaryScore.value>0.5){
+                  $("#idattack_score").css("backgroundColor", "red");
+                }
+                $("#idattack_score").text(this.response.attributeScores.IDENTITY_ATTACK.summaryScore.value);
+
+                if(this.response.attributeScores.INSULT.summaryScore.value>0.5){
+                  $("#insult_score").css("backgroundColor", "red");
+                }
+                $("#insult_score").text(this.response.attributeScores.INSULT.summaryScore.value);
+
+                if(this.response.attributeScores.THREAT.summaryScore.value>0.5){
+                  $("#threat_score").css("backgroundColor", "red");
+                }
+                $("#threat_score").text(this.response.attributeScores.THREAT.summaryScore.value);
+
+                if(this.response.attributeScores.SEXUALLY_EXPLICIT.summaryScore.value>0.5){
+                  $("#sexexplicit_score").css("backgroundColor", "red");
+                }
+                $("#sexexplicit_score").text(this.response.attributeScores.SEXUALLY_EXPLICIT.summaryScore.value);
+
+                if(this.response.attributeScores.FLIRTATION.summaryScore.value>0.5){
+                  $("#flirtation_score").css("backgroundColor", "red");
+                }
+                $("#flirtation_score").text(this.response.attributeScores.FLIRTATION.summaryScore.value);
+            }
+        }
+      x.send(composedComment);
+      }
+  } );
+
+  $("#checkBtn").click(function () {
+    console.log("click the check button");
+    var textString = document.getElementById( "inputText" ).value.trim();
+    const API_KEY = 'AIzaSyDXuNaU-cLxLU9eZGNnQsphvfqqyMELWJw';
+    const analyzeURL = 'https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key=' + API_KEY;
+    const x = new XMLHttpRequest();
+    const composedComment = `{comment: {text: "${textString}"},
+        languages: ["en"],
+        requestedAttributes: {TOXICITY:{}, PROFANITY:{}, IDENTITY_ATTACK:{}, INSULT:{},THREAT:{},SEXUALLY_EXPLICIT:{},FLIRTATION:{}} }`;
+    // Adds the required HTTP header for form data POST requests.
+    x.open('POST', analyzeURL, true);
+    x.setRequestHeader('Content-Type', 'application/json');
+    x.responseType = 'json';
+    x.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log(this.response);
+            if(this.response.attributeScores.TOXICITY.summaryScore.value>0.5){
+              $("#tox_score").css("backgroundColor", "#CD5C5C");
+            }
+            $("#tox_score").text(this.response.attributeScores.TOXICITY.summaryScore.value);
+
+            if(this.response.attributeScores.PROFANITY.summaryScore.value>0.5){
+              $("#profanity_score").css("backgroundColor","#CD5C5C");
+            }
+            $("#profanity_score").text(this.response.attributeScores.PROFANITY.summaryScore.value);
+
+            if(this.response.attributeScores.IDENTITY_ATTACK.summaryScore.value>0.5){
+              $("#idattack_score").css("backgroundColor", "red");
+            }
+            $("#idattack_score").text(this.response.attributeScores.IDENTITY_ATTACK.summaryScore.value);
+
+            if(this.response.attributeScores.INSULT.summaryScore.value>0.5){
+              $("#insult_score").css("backgroundColor", "red");
+            }
+            $("#insult_score").text(this.response.attributeScores.INSULT.summaryScore.value);
+
+            if(this.response.attributeScores.THREAT.summaryScore.value>0.5){
+              $("#threat_score").css("backgroundColor", "red");
+            }
+            $("#threat_score").text(this.response.attributeScores.THREAT.summaryScore.value);
+
+            if(this.response.attributeScores.SEXUALLY_EXPLICIT.summaryScore.value>0.5){
+              $("#sexexplicit_score").css("backgroundColor", "red");
+            }
+            $("#sexexplicit_score").text(this.response.attributeScores.SEXUALLY_EXPLICIT.summaryScore.value);
+
+            if(this.response.attributeScores.FLIRTATION.summaryScore.value>0.5){
+              $("#flirtation_score").css("backgroundColor", "red");
+            }
+            $("#flirtation_score").text(this.response.attributeScores.FLIRTATION.summaryScore.value);
+        }
+    }
+  x.send(composedComment);
+  });
+</script>
+
+</html>
