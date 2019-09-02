@@ -12,12 +12,12 @@
 </head>
 <body>
   <!-- The core Firebase JS SDK is always required and must be listed first -->
-  <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-app.js"></script>
+  <!--<script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-app.js"></script>-->
 
   <!-- TODO: Add SDKs for Firebase products that you want to use
       https://firebase.google.com/docs/web/setup#config-web-app -->
 
-      <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-auth.js"></script>
+      <!--<script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-auth.js"></script>
       <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-database.js"></script>
 
   <script>
@@ -33,22 +33,21 @@
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-  </script>
+</script>-->
 
   <div id="main-content">
-   <div id="topdesc">Dong-A Ilbo :</div>
-    <div id="headline">Gender confrontation over extra points for military service</div>
+   <div id="topdesc">Help us Understanding the Machine Learning (ML) Output</div>
+    <div id="headline">Select text from the following list or write your own text to find out the reasoning behind the ML score</div>
     <div id="author-break"></div>
     </div>
     <br>
     <div id="headline-article-break"></div>
     <div class="article-text">
-      Korea is likely to be divided into two over an issue. Recently, the Military Culture Reform Committee, a private, public and military joint organization, proposed a recommendation to give extra points for compensation to those who completed military service. It seems quite natural that a heated controversy is caused over this recommendation.<br>
+      The toxic comment in annonymous online discusssion means whether a comment is a rude, disrespectful, or unreasonable comment that is likely to make people leave a discussion. <br>
       <br>
-      The military service is imposed only to men among four duties of a citizen. Since the military service is mandatory for men but optional for women, controversy over gender equality starts from here.<br>
-      <br>
-      After exhausted 2 years in the military camp, those young men end up with a gap in their education and preparation for employment. As long as there is no change in the current conscription system, people who sacrificed their youth for nation must not be put at a disadvantage, if not compensated properly.
- </div>
+      We are using <a href="https://www.perspectiveapi.com/">Google's perspectiveAPI</a> to measure the toxicity score of a text in 0 to 100 percent scale. <br>
+      Perspective’s scoring system was trained using hundreds of thousands of human-moderated comments to identify patterns that make a comment “toxic.”
+    </div>
     <!-- <div id="article-voting" class="secondary-interactions">
       <button class="response-button" onclick="buttonClicked('downvote', this);" type="button"> <img id="downvote-article-icon-1" class="button-icon" src='./resources/downvote.png'> Downvote </button>
       <button class="response-button" onclick="buttonClicked('upvote', this);" type="button"> <img id="upvote-article-icon-1" class="button-icon" src='./resources/upvote.png'> Upvote </button>
