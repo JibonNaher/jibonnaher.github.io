@@ -1,1 +1,279 @@
 
+body {
+  background-color: #FFFFFF;
+  font-family: "Open Sans";
+  line-height: 1.2;
+  width: 70%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+#topdesc {
+  font-size: 24px;
+  line-height: 1.6;
+  margin-top: 10vm;
+  font-weight: 200;
+}
+
+#headline {
+  font-size: 32px;
+  line-height: 1.2;
+  margin-top: 10vm;
+  font-weight: bold;
+}
+
+#article-break {
+  height: 40px;
+}
+
+.article-text {
+  font-size: 16.5px;
+  float: clear;
+  font-family: "Georgia", "Times New Roman", serif;
+  margin-top: 2vm;
+  margin-bottom: 4vm;
+}
+
+#comment-header {
+  font-size: 22px;
+  color: #9B9B9B;
+}
+
+.comment-username {
+  font-size: 18px;
+  line-height: 2.0;
+}
+
+.comment-username a{
+  font-size: 12px;
+  color: #C9C9C9;
+}
+
+.comment-time {
+  font-size: 12px;
+  color: #C9C9C9;
+  line-height: 1.4;
+}
+
+.comment-text {
+  font-size: 15px;
+}
+
+.comment-interactions {
+  float: right;
+  margin-bottom: 4px;
+}
+
+.comment-reply {
+  /* margin: 0 auto;
+  float: clear;
+  display: flex;
+  flex-direction: row;
+  clear: right; */
+  flex-grow: 1;
+}
+
+.response-button {
+  background-color: #16A085;
+  border: none;
+  border-radius: 5px;
+  color: #FFFFFF;
+  text-align: center;
+  text-decoration: none;
+  font-size: 15px;
+  cursor: pointer;
+  text-align: center;
+  height: 150px;
+}
+
+.button-icon {
+  width: 16px;
+  height: 16px;
+  padding-right: 4px;
+}
+
+.reply-textarea {
+  border-radius: 4px;
+  background-color: white;
+  overflow: none;
+  border: 1px solid #979797;
+  padding-left: 4px;
+  resize: none;
+  width: 100%;
+  height: 112px;
+}
+
+#comment-submission {
+  display: flex;
+}
+
+#comment-submission-icon {
+  width: 25px;
+  height: 20px;
+}
+
+#comment-submission-title {
+  font-size: 22px;
+  color: #16A085;
+}
+
+.secondary-interactions {
+  display: none;
+  visibility: hidden;
+}
+
+#comment-section-break {
+  height: 20px;
+}
+
+.comment-spacer {
+  height: 20px;
+}
+
+.user-comment-spacer {
+  height: 35px;
+}
+
+#comment-submission-footer {
+  height: 20px;
+}
+
+.user-username{
+  color: #16A085;
+}
+
+#author-break {
+  height: 20px;
+}
+
+.author-text {
+  float: left;
+}
+
+#author-name {
+  padding-left: 10px;
+  font-weight: bold;
+  font-style: italic;
+}
+
+#author-title {
+  padding-left: 10px;
+}
+
+#author-date {
+  color: #9B9B9B;
+  padding-left: 20px;
+}
+
+#headline-article-break {
+  height: 20px;
+}
+
+#project-continue {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  width: 100%;
+  background-color: gray;
+}
+
+#exercise-continue {
+  float: right;
+  display: none;
+}
+
+.w3-light-grey {
+  color:#000!important;background-color:#f1f1f1!important;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  padding: 3px;
+  border-radius: 10px;
+}
+
+.w3-container {
+  content:"";display:table;clear:both;
+  display:inline-block;width:auto;
+  border-radius: 10px;
+}
+
+.w3-center{text-align:center!important;color:#fff}
+
+.circle {
+  margin: 6px 6px 6px;
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.circle strong {
+  position: absolute;
+  top: 20px;
+  right: 13px;
+  width: 100%;
+  text-align: center;
+  line-height: 40px;
+  font-size: 30px;
+}
+
+.reply-out{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 120px;
+  margin-top: 10px;
+}
+
+.reply-in1{
+  flex: 0 0 100%;
+  width: 88%;
+}
+
+.reply-in2{
+  margin-left: 2%;
+  flex: 0 0 10%;
+  width: 10%;
+}
+
+#description{
+  background: none;
+  border: none;
+  text-align: center;
+  padding: 0;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /*Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%; /* Could be more or less, depending on screen size */
+}
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
