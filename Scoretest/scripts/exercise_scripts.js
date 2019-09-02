@@ -47,6 +47,10 @@ function cleanResource(resource) {
   return resource.replace("./resources/", '');
 }
 
+$(document).on('click','.forclick',function(){
+  $("#comment-textarea").val($(this).text());
+});
+
 function buttonClicked(buttonType, callerObject) {
   if (buttonType==="downvote") {
     fireDownvote(callerObject);

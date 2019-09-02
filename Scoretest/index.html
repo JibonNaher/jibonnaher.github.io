@@ -36,219 +36,46 @@
 </script>-->
 
   <div id="main-content">
-   <div id="topdesc">Help us Understanding the Machine Learning (ML) Output</div>
-    <div id="headline">Select text from the following list or write your own text to find out the reasoning behind the ML score</div>
+    <div id="headline">Help us Understanding the Machine Learning (ML) Output</div>
+    <div id="topdesc">Select text from the following list or write your own text to find out the reasoning behind the ML score</div>
     <div id="author-break"></div>
-    </div>
+  </div>
+  <br>
+  <div id="headline-article-break"></div>
+  <div class="article-text">
+    The toxic comment in online discusssion means whether a comment is a rude, disrespectful, or unreasonable comment that is likely to make people leave a discussion. <br>
     <br>
-    <div id="headline-article-break"></div>
-    <div class="article-text">
-      The toxic comment in annonymous online discusssion means whether a comment is a rude, disrespectful, or unreasonable comment that is likely to make people leave a discussion. <br>
-      <br>
-      We are using <a href="https://www.perspectiveapi.com/">Google's perspectiveAPI</a> to measure the toxicity score of a text in 0 to 100 percent scale. <br>
-      Perspective’s scoring system was trained using hundreds of thousands of human-moderated comments to identify patterns that make a comment “toxic.”
-    </div>
+    We are using <a href="https://www.perspectiveapi.com/">Google's perspectiveAPI</a> to measure the probability of a text to <b>perceived</b> as toxic in a discussion in percentage scale.
+    Perspective’s scoring system was trained using hundreds of thousands of human-moderated comments to identify patterns that make a comment “toxic”. <br>
+    As a user of online discussion, we want to understand how this ML model scoring the toxicity of a text and how to improve the output.
+  </div>
     <!-- <div id="article-voting" class="secondary-interactions">
       <button class="response-button" onclick="buttonClicked('downvote', this);" type="button"> <img id="downvote-article-icon-1" class="button-icon" src='./resources/downvote.png'> Downvote </button>
       <button class="response-button" onclick="buttonClicked('upvote', this);" type="button"> <img id="upvote-article-icon-1" class="button-icon" src='./resources/upvote.png'> Upvote </button>
     </div> -->
 
-  <div id="article-break"> </div>
-
-  <div id="comment-section">
-    <div id="comment-header">Comments</div>
-    <br>
-    <div id="comment1" class="comment-box">
-     <div class="comment-username">User 2647   <a>(35 minutes ago)</a></div>
-      <div class="comment-text">Stop discriminating against women and the disabled. We have to consider the both sides of the argument and reorganize the program</div>
-      <!-- <div class="comment-interactions secondary-interactions">
-        <button id="reply-button-1" class="response-button reply-button" onclick="buttonClicked('reply', this)">Reply</button>
-        <button id="downvote-button-1" class="response-button" onclick="buttonClicked('downvote', this);">
-          <img id="downvote-comment-icon-1" class="button-icon" src='./resources/downvote.png'> Downvote</button>
-        <button id="upvote-button-1" class="response-button" onclick="buttonClicked('upvote', this);">
-          <img id="upvote-comment-icon-1" class="button-icon" src='./resources/upvote.png'>Upvote</button>
-        <button id="report-button-1" class="response-button" onclick="buttonClicked('report', this);">
-          <img id="report-icon-1" class="button-icon" src="./resources/flag.png">Report</button>
-      </div> -->
-
-      <div class="user-comment-spacer"></div>
-    </div>
-
-    <div id="comment2" class="comment-box">
-      <div class="comment-username">User 1892   <a>(27 minutes ago)</a></div>
-     <div class="comment-text">Men are house-keeping dogs. It doesn't make sense to feed more because they did what they were supposed to do.</div>
-      <!-- <div class="comment-interactions secondary-interactions">
-        <button id="reply-button-2" class="response-button reply-button" onclick="buttonClicked('reply', this)">Reply</button>
-        <button id="downvote-button-2" class="response-button" onclick="buttonClicked('downvote', this);">
-          <img id="downvote-comment-icon-2" class="button-icon" src='./resources/downvote.png'> Downvote</button>
-        <button id="upvote-button-2" class="response-button" onclick="buttonClicked('upvote', this);">
-          <img id="upvote-comment-icon-2" class="button-icon" src='./resources/upvote.png'> Upvote</button>
-        <button id="report-button-2" class="response-button" onclick="buttonClicked('report', this);">
-          <img id="report-icon-2" class="button-icon" src="./resources/flag.png">Report</button>
-      </div> -->
-
-      <div class="user-comment-spacer"></div>
-    </div>
-
-    <div id="comment3" class="comment-box">
-      <div class="comment-username">User 3018   <a>(18 minutes ago)</a></div>
-     <div class="comment-text">You idiots... It is unworthy to force men to do their duty without any benefit.</div>
-      <!-- <div class="comment-interactions secondary-interactions">
-        <button id="reply-button-3" class="response-button reply-button" onclick="buttonClicked('reply', this)">Reply</button>
-        <button id="downvote-button-3" class="response-button" onclick="buttonClicked('downvote', this);">
-          <img id="downvote-comment-icon-3" class="button-icon" src='./resources/downvote.png'> Downvote</button>
-        <button id="upvote-button-3" class="response-button" onclick="buttonClicked('upvote', this);">
-          <img id="upvote-comment-icon-3" class="button-icon" src='./resources/upvote.png'> Upvote</button>
-        <button id="report-button-3" class="response-button" onclick="buttonClicked('report', this);">
-          <img id="report-icon-1" class="button-icon" src="./resources/flag.png">Report</button>
-      </div> -->
-
-      <div class="user-comment-spacer"></div>
-    </div>
-
-    <div id="comment4" class="comment-box">
-     <div class="comment-username">User 5472   <a>(7 minutes ago)</a></div>
-      <div class="comment-text">Calm down. What most people say is that the benefits should be given, but the method is wrong.</div>
-      <!-- <div class="comment-interactions secondary-interactions">
-        <button id="reply-button-4" class="response-button reply-button" onclick="buttonClicked('reply', this)">Reply</button>
-        <button id="downvote-button-4" class="response-button" onclick="buttonClicked('downvote', this);">
-          <img id="downvote-comment-icon-4" class="button-icon" src='./resources/downvote.png'> Downvote</button>
-        <button id="upvote-button-4" class="response-button" onclick="buttonClicked('upvote', this);">
-          <img id="upvote-comment-icon-4" class="button-icon" src='./resources/upvote.png'> Upvote</button>
-        <button id="report-button-4" class="response-button" onclick="buttonClicked('report', this);">
-          <img id="report-icon-1" class="button-icon" src="./resources/flag.png">Report</button>
-      </div> -->
-
-      <div class="user-comment-spacer"></div>
-    </div>
-  </div>
 
   <div id="comment-section-break"></div>
-
-  <div id="comment-submission">
-    <div id="comment-submission-title"><img id="comment-submission-icon" src="./resources/commentBubble.png"> Comment</div>
-  </div>
-
   <div class="reply-out">
-
     <div class="comment-reply reply-in1">
-      <textarea id="comment-textarea" placeholder="Join the discussion" class="reply-textarea"></textarea>
+      <textarea id="comment-textarea" placeholder="Type a draft comment to view the ML score" class="reply-textarea"></textarea>
     </div>
-
-    <div class="forth circle reply-in2">
-      <strong>Civility Score</strong>
-      <button id="description"><img src='./resources/question.png' style="width:25px;height:25px;"></button>
+    <div> OR,
     </div>
-
-    <button id="comment-submit-button-1" class="reply-in2 response-button" onclick="buttonClicked('comment-submit', this)">Comment</button>
-
+    <div class="comment-reply reply-in1">
+      <div> Select one from the exisitng comments of a discussion
+      </div>
+      <div class="comment-reply reply-in2">
+        <span class = "forclick">They are liberal idiots who are uneducated.</span><br>
+        <span class = "forclick">They're stupid, it's getting warmer, we should enjoy it while it lasts.</span><br>
+        <span class = "forclick">hello</span><br>
+        <span class = "forclick">hello</span><br>
+        <span class = "forclick">hello</span><br>
+        <span class = "forclick">hello</span><br>
+        <span class = "forclick">hello</span><br>
+        <span class = "forclick">hello</span><br>
+      </div>
+    </div>
   </div>
 
-  <div id="myModal" class="modal">
-
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <h1 style="text-align: center">You need to know</h1>
-      <p>What is this value:</p>
-
-      <p>How it is calculated:</p>
-
-      <p>How it can be used in the moderation:</p>
-
-      <h1 style="text-align: center">Your feedback</h1>
-
-      <p>What is your position on the value:</p>
-
-      <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-      <span> Score : </span><span id="user_score"></span>
-
-      <p>Why do you think so:</p>
-      <textarea id="feedback" style="width:95%;height:80px;"></textarea>
-      <br>
-      <button onclick="sendfeedback()">Submit</button>
-
-    </div>
-
-  </div>
-
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-  <script src="./scripts/circle.js"></script>
-
-  <script>
-    var c4 = $('.forth.circle');
-    c4.circleProgress({
-      startAngle: -Math.PI / 2,
-      value: 0,
-      lineCap: 'round',
-      fill: {color: '#ffa500'}
-    }).on('circle-animation-progress', function(event, progress, stepValue) {
-      $(this).find('strong').text(stepValue.toFixed(2).substr(2)+'%');
-    });
-    var cmn = 4;
-    var avgi=0.46;
-    var avgscore;
-    var score;
-    $("#comment-textarea").keyup(()=>{
-        const analyzeURL = 'https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key=AIzaSyAXBN-B4-kxdC0wG9IJWaLNDonVIY_Ei8M';
-        const x = new XMLHttpRequest();
-        var msg = $("#comment-textarea").val() || ".";
-        const composedComment = `{comment: {text: "${msg}"},
-            languages: ["en"],
-            requestedAttributes: {TOXICITY:{}} }`;
-        x.open('POST', analyzeURL, true);
-        x.setRequestHeader('Content-Type', 'application/json');
-        x.responseType = 'json';
-        x.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                score = this.response.attributeScores.TOXICITY.summaryScore.value;
-                console.log(score);
-                // $("#comment-textarea").val() ? $('#scorebar-comment').val(1-score) : $('#scorebar-comment').val(0);
-                avgscore = (avgi*cmn+score)/(cmn+1);
-                $("#comment-textarea").val() ? $('#scorebar-comment').width(((1-score)*100)+"%")&&$('#scorebar-comment').html("Civility Score : "+parseInt((1-score)*100)) : $('#scorebar-comment').width(0)&&$('#scorebar-comment').html("");
-                $("#comment-textarea").val() ? $('#avg').width(((1-avgscore)*100)+"%")&&$('#avg').html("Overall comment average score : "+parseInt((1-avgscore)*100)) : $('#avg').width(`avgi%`)&&$('#avg').html("Overall comment average score : "+ parseInt((1-avgi)*100));
-                if (1-score < 0.4) {
-                  $('#scorebar-comment').css('backgroundColor', '#ef5350');
-                  $("#comment-textarea").val() ? $('#scorebar-comment').width(((1-score)*100)+"%")&&$('#scorebar-comment').html(parseInt((1-score)*100)) : $('#scorebar-comment').width(0)&&$('#scorebar-comment').html("");
-                } else if (1-score < 0.7) $('#scorebar-comment').css('backgroundColor', '#ffb74d');
-                else $('#scorebar-comment').css('backgroundColor', '#3798d9');
-                if (1-avgscore < 0.4) {
-                  $('#avg').css('backgroundColor', '#ef5350');
-                  $("#comment-textarea").val() ? $('#avg').width(((1-avgscore)*100)+"%")&&$('#avg').html(parseInt((1-avgscore)*100)) : $('#avg').width(`avgi%`)&&$('#avg').html(parseInt((1-avgi)*100));
-                }
-                else if (1-avgscore < 0.7) $('#avg').css('backgroundColor', '#ffb74d');
-                else $('#avg').css('backgroundColor', '#3798d9');
-                $("#comment-textarea").val() ? setTimeout(function() { c4.circleProgress('value', 1-score); }, 0) : setTimeout(function() { c4.circleProgress('value', 0); }, 0);
-            };
-        };
-      x.send(composedComment);
-    });
-    // Get the modal
-    var modal = document.getElementById('myModal');
-    // Get the button that opens the modal
-    var btn = document.getElementById("description");
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-    // When the user clicks on the button, open the modal
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-    var slider = document.getElementById("myRange");
-    var output = document.getElementById("user_score");
-    output.innerHTML = slider.value; // Display the default slider value
-    // Update the current slider value (each time you drag the slider handle)
-    slider.oninput = function() {
-      output.innerHTML = this.value;
-    }
-  </script>
 </body>
