@@ -60,27 +60,98 @@
     <div class="comment-reply reply-in1">
       <textarea id="comment-textarea" placeholder="Type a draft comment to view the ML score" class="reply-textarea"></textarea>
       <div>
-        <button type="button" class="btn btn-info">Check Score</button>
-        <p> the score is: </p>
-        <button>Disagree?</button>
+        <button id ="checkBtn" type="button" class="btn btn-info" onclick="findScore()">Check Score</button>
+        <p id ="scoreP" > The toxicity score in the text is: </p>
+        <div id ="hideDiv">
+          <span class = "infoSpan">Likely to perceived as disrespectful or rude to other people in the discussion</span>
+          <br><br>
+          <button id ="disagreeBtn" >Disagree?</button>
+        </div>
       </div>
     </div>
     <div> OR,
     </div>
     <div class="comment-reply reply-in1">
-      <div> Select one from the exisitng comments of a discussion
+      <div> Select one from the exisitng comments of a discussion in the context of "Climate Change"
       </div>
       <div class="comment-reply reply-in2">
         <span class = "forclick">They are liberal idiots who are uneducated.</span><br>
         <span class = "forclick">They're stupid, it's getting warmer, we should enjoy it while it lasts.</span><br>
-        <span class = "forclick">hello</span><br>
-        <span class = "forclick">hello</span><br>
-        <span class = "forclick">hello</span><br>
-        <span class = "forclick">hello</span><br>
-        <span class = "forclick">hello</span><br>
-        <span class = "forclick">hello</span><br>
+        <span class = "forclick">They are uninformed or ignorant</span><br>
+        <span class = "forclick">Their opinion, just don't force it down my throat</span><br>
+        <span class = "forclick">I respect them but I believe they think I am stupid and only thinking short-term. I believe we don't know what will happen long-term regardless of supporting regulation regarding climate change. Regulation impedes industry and job creation.</span><br>
+        <span class = "forclick">I don't care. They are usually democrats.</span><br>
+        <span class = "forclick">Crooked science. There is no consensus</span><br>
+        <span class = "forclick">Poorly educated, ultimately not their fault. I blame the American educational system</span><br>
+        <span class ="forclick">I think there is a man-made component to climate change, but am afraid the government remedies are potentially far-worse than the disease.</span><br>
+        <span class = "forclick">I think it exists. But, I am not big on regulations regarding climate change. The EPA regulates way too much.</span><br>
+        <span class = "forclick">Haven't seen unbiased data</span><br>
+        <span class = "forclick">Our government needs to do everything it can to combat the causes and effects of climate change. In addition, it is our responsibility as citizens of the world to reduce our use of resources and preserve our environment.</span><br>
+        <span class = "forclick">Climate change is real. The reasons for certain phenomena are not well understood. There is plenty of research yet to be done, and a great deal more to be understood.</span><br>
       </div>
     </div>
   </div>
 
+  <div id="myModal" class="modal">
+
+    <div class="modal-content">
+
+      <span class="close">&times;</span>
+      <div>
+        <br>
+        What should be the toxicity in your opinion: <input type="range" id="slider" value="50" min="0" max="100" step="1" />
+        <span id="slider_value">50</span>
+        <br><br><div>Please explain the reason for your choice. It will help us to update the model after reviewing by the moderator:</div>
+        <br><div><textarea placeholder="Please explain the reason for your choice"></textarea></div>
+        I wish I can see: <input />
+        <br><button id ="feedbackBtn" onclick="feedback()">Submit</button>
+      </div>
+      <!-- <h1 style="text-align: center">You need to know</h1>
+      <p>What is this value:</p>
+
+      <p>How it is calculated:</p>
+
+      <p>How it can be used in the moderation:</p>
+
+      <h1 style="text-align: center">Your feedback</h1>
+
+      <p>What is your position on the value:</p>
+
+      <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+      <span> Score : </span><span id="user_score"></span>
+
+      <p>Why do you think so:</p>
+      <textarea id="feedback" style="width:95%;height:80px;"></textarea>
+      <br>
+      <button onclick="sendfeedback()">Submit</button> -->
+
+    </div>
+
+  </div>
+
+  <script>
+    // Get the modal
+   var modal = document.getElementById('myModal');
+   // Get the button that opens the modal
+   var btn = document.getElementById("disagreeBtn");
+   // Get the <span> element that closes the modal
+   var span = document.getElementsByClassName("close")[0];
+   // When the user clicks on the button, open the modal
+   btn.onclick = function() {
+       modal.style.display = "block";
+   }
+   // When the user clicks on <span> (x), close the modal
+   span.onclick = function() {
+       modal.style.display = "none";
+   }
+   // When the user clicks anywhere outside of the modal, close it
+   window.onclick = function(event) {
+       if (event.target == modal) {
+           modal.style.display = "none";
+       }
+   }
+  </script>
+
 </body>
+
+</html>

@@ -49,7 +49,39 @@ function cleanResource(resource) {
 
 $(document).on('click','.forclick',function(){
   $("#comment-textarea").val($(this).text());
+  $("#hideDiv").css("visibility", "hidden");
+  $("#scoreP").text("The toxicity score in the text is: ");
 });
+
+$(document).on('input', '#slider', function() {
+    $('#slider_value').html( $(this).val() );
+});
+
+function findScore() {
+  console.log("clicked the button");
+  const analyzeURL = 'https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key=AIzaSyAXBN-B4-kxdC0wG9IJWaLNDonVIY_Ei8M';
+  const x = new XMLHttpRequest();
+  var msg = $("#comment-textarea").val() || ".";
+  const composedComment = `{comment: {text: "${msg}"},
+      languages: ["en"],
+      requestedAttributes: {TOXICITY:{}} }`;
+  x.open('POST', analyzeURL, true);
+  x.setRequestHeader('Content-Type', 'application/json');
+  x.responseType = 'json';
+  x.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        scoretext = $("#scoreP").text();
+        score = this.response.attributeScores.TOXICITY.summaryScore.value;
+        scoretext+=score;
+        $("#scoreP").text(scoretext);
+        $("#hideDiv").css("visibility", "visible");
+        $("#hideDiv1").css("visibility", "hidden");
+        console.log(score);
+      };
+  };
+  x.send(composedComment);
+}
+$( "#checkBtn" ).on( "click", findScore );
 
 function buttonClicked(buttonType, callerObject) {
   if (buttonType==="downvote") {
