@@ -7,10 +7,6 @@ body {
   margin: 0 auto;
   padding: 20px;
 }
-
-span:hover{
-  background-color: grey;
-}
 button{
   background-color: #3CB1A5;
   border-radius: 3px;
@@ -264,6 +260,9 @@ textarea{
   font-size: 12px;
   padding: 5px;
   border: 1px solid #888;
+}
+.reply-in2 span:hover{
+  background-color: grey;
 }
 
 #description{

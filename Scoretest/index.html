@@ -102,8 +102,12 @@
         What should be the toxicity in your opinion: <input type="range" id="slider" value="50" min="0" max="100" step="1" />
         <span id="slider_value">50</span>
         <br><br><div>Please explain the reason for your choice. It will help us to update the model after reviewing by the moderator:</div>
-        <br><div><textarea placeholder="Please explain the reason for your choice"></textarea></div>
-        I wish I can see: <input />
+        <br><div><textarea placeholder="Please explain the reason for your choice"></textarea></div><br><br>
+        I wish I can see: <br>
+        <input type="checkbox" name="vehicle" value="Bike"> Some example having higher and lower than this one<br>
+        <input type="checkbox" name="vehicle" value="Car"> Some of the highest and lowest scored examples <br>
+        <input type="checkbox" name="vehicle" value="Car"> Some example having the same score as this one <br>
+        Other<input type ="text" placeholder="please specify"><br><br>
         <br><button id ="feedbackBtn" onclick="feedback()">Submit</button>
       </div>
       <!-- <h1 style="text-align: center">You need to know</h1>
