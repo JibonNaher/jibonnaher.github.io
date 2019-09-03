@@ -61,7 +61,7 @@
       <textarea id="comment-textarea" placeholder="Type a draft comment to view the ML score" class="reply-textarea"></textarea>
       <div>
         <button id ="checkBtn" type="button" class="btn btn-info" onclick="findScore()">Check Score</button>
-        <p id ="scoreP" > The toxicity score in the text is: </p>
+        <p id ="scoreP" > The toxicity score in the text is:  </p>
         <div id ="hideDiv">
           <span class = "infoSpan">Likely to perceived as disrespectful or rude to other people in the discussion</span>
           <br><br>
@@ -99,15 +99,16 @@
       <span class="close">&times;</span>
       <div>
         <br>
-        What should be the toxicity in your opinion: <input type="range" id="slider" value="50" min="0" max="100" step="1" />
-        <span id="slider_value">50</span>
+        What should be the toxicity in your opinion: <input type="range" id="slider" value="50" min="0" max="100" step="0.1" />
+        <span id="slider_value">50%</span>
         <br><br><div>Please explain the reason for your choice. It will help us to update the model after reviewing by the moderator:</div>
-        <br><div><textarea placeholder="Please explain the reason for your choice"></textarea></div><br><br>
+        <br><div><textarea id  = "userScoreReason" placeholder="Please explain the reason for your choice"></textarea></div><br><br>
         I wish I can see: <br>
-        <input type="checkbox" name="vehicle" value="Bike"> Some example having higher and lower than this one<br>
-        <input type="checkbox" name="vehicle" value="Car"> Some of the highest and lowest scored examples <br>
-        <input type="checkbox" name="vehicle" value="Car"> Some example having the same score as this one <br>
-        Other<input type ="text" placeholder="please specify"><br><br>
+        <input type="checkbox" name="option" value="option1"> Some example having higher and lower than this one<br>
+        <input type="checkbox" name="option" value="option2"> Some of the highest and lowest scored examples <br>
+        <input type="checkbox" name="option" value="option3"> Some example having the same score as this one <br>
+        <input type="checkbox" name="option" value="option4"> Lots of more example to test from the dataset <br>
+        Other <input type ="text" id = "otherOption" placeholder="please specify"><br><br>
         <br><button id ="feedbackBtn" onclick="feedback()">Submit</button>
       </div>
       <!-- <h1 style="text-align: center">You need to know</h1>
@@ -155,6 +156,48 @@
        }
    }
   </script>
+
+
+
+  <!--   csv file test
+<script>
+var data = [
+   ['Foo', 'programmer'],
+   ['Bar', 'bus driver'],
+   ['Moo', 'Reindeer Hunter']
+];
+
+
+function download_csv() {
+    var csv = 'Name,Title\n';
+    data.forEach(function(row) {
+            csv += row.join(',');
+            csv += "\n";
+    });
+
+    console.log(csv);
+    var hiddenElement = document.createElement('a');
+    hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+    hiddenElement.target = '_blank';
+    hiddenElement.download = 'people.csv';
+    hiddenElement.click();
+}
+</script>
+
+<button onclick="download_csv()">Download CSV</button> -->
+
+<!--  get checkbox values
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("button").click(function(){
+            var favorite = [];
+            $.each($("input[name='sport']:checked"), function(){
+                favorite.push($(this).val());
+            });
+            alert("My favourite sports are: " + favorite.join(", "));
+        });
+    });
+</script> -->
 
 </body>
 

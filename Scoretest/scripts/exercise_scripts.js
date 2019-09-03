@@ -54,7 +54,7 @@ $(document).on('click','.forclick',function(){
 });
 
 $(document).on('input', '#slider', function() {
-    $('#slider_value').html( $(this).val() );
+    $('#slider_value').html( $(this).val()+"%" );
 });
 
 function findScore() {
@@ -72,7 +72,7 @@ function findScore() {
       if (this.readyState == 4 && this.status == 200) {
         scoretext = $("#scoreP").text();
         score = this.response.attributeScores.TOXICITY.summaryScore.value;
-        scoretext+=score;
+        scoretext+= " "+(score*100).toFixed(2)+"%";
         $("#scoreP").text(scoretext);
         $("#hideDiv").css("visibility", "visible");
         $("#hideDiv1").css("visibility", "hidden");
@@ -81,7 +81,40 @@ function findScore() {
   };
   x.send(composedComment);
 }
-$( "#checkBtn" ).on( "click", findScore );
+
+function feedback(){
+  var msg = $("#comment-textarea").val();
+  var userScore = $('#slider').val();
+  var userScoreReason = $("#userScoreReason").val();
+  var otherOption = $("#otherOption").val();
+  var favorite = "";
+  $.each($("input[name='option']:checked"), function(){
+      favorite+= $(this).val()+",";
+  });
+
+  var data = [
+     ['OriginalMessage', msg],
+     ['userScore', userScore],
+     ['userScoreReason', userScoreReason],
+     ['otherOption', otherOption],
+     ['favorite', favorite]
+  ];
+
+  var csv = 'Name,Title\n';
+  data.forEach(function(row) {
+          csv += row.join(',');
+          csv += "\n";
+  });
+
+  console.log(csv);
+  var hiddenElement = document.createElement('a');
+  hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+  hiddenElement.target = '_blank';
+  var today = new Date();
+  var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+  hiddenElement.download = time+'.csv';
+  hiddenElement.click();
+}
 
 function buttonClicked(buttonType, callerObject) {
   if (buttonType==="downvote") {
