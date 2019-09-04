@@ -58,20 +58,6 @@
   <div id="comment-section-break"></div>
   <div class="reply-out">
     <div class="comment-reply reply-in1">
-      <textarea id="comment-textarea" onchange="resetButtons()" placeholder="Type a draft comment to view the ML score" class="reply-textarea"></textarea>
-      <div>
-        <button id ="checkBtn" type="button" class="btn btn-info" onclick="findScore()">Check Score</button>
-        <p id ="scoreP" > I think the toxicity score in the text is:  </p>
-        <div id ="hideDiv">
-          <div id = "infoDiv"><span id ="infoSpan" class = "infoSpan"></span></div>
-          <br><br>
-          <button id ="disagreeBtn" >Disagree with the score?</button>
-        </div>
-      </div>
-    </div>
-    <div> OR,
-    </div>
-    <div class="comment-reply reply-in1">
       <div> Select one from the exisitng comments of a discussion in the context of "Climate Change"
       </div>
       <div class="comment-reply reply-in2">
@@ -90,6 +76,20 @@
         <span class = "forclick">Climate change is real. The reasons for certain phenomena are not well understood. There is plenty of research yet to be done, and a great deal more to be understood.</span><br>
       </div>
     </div>
+    <div> OR,
+    </div>
+    <div class="comment-reply reply-in1">
+      <textarea id="comment-textarea" onchange="resetButtons()" placeholder="Type a draft comment to view the ML score" class="reply-textarea"></textarea>
+      <div>
+        <button id ="checkBtn" type="button" class="btn btn-info" onclick="findScore()">Check Score</button>
+        <div id ="hideDiv">
+          <p id ="scoreP" > I think the toxicity score in the text is:  </p>
+          <div id = "infoDiv"><span id ="infoSpan" class = "infoSpan"></span></div>
+          <br><br>
+          <button id ="disagreeBtn" >Disagree with the score? Please give your opinion.</button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div id="myModal" class="modal">
@@ -101,7 +101,7 @@
         <br>
         What should be the toxicity in your opinion: <input type="range" id="slider" value="50" min="0" max="100" step="1" />
         <span id="slider_value">50%</span>
-        <br><br><div>Please explain the reason for your choice. It will help us to update the model after reviewing by the moderator:</div>
+        <br><br><div>Please explain the reason for your choice. It will help us to update the ML model after reviewing by the moderator:</div>
         <br><div><textarea id  = "userScoreReason" placeholder="Please explain the reason for your choice"></textarea></div><br><br>
         I wish I can see: <br>
         <input type="checkbox" name="option" value="option1"> Some example having higher and lower than this one<br>
