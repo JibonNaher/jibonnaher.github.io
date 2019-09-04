@@ -39,6 +39,9 @@ var MAX_INTERVENTIONS_ATTEMPTED = 100000; //Change this to change number of inte
 
 localStorage.setItem("commentComplete", "not_complete");
 
+//            add new items         //
+var currentScore = 0;
+
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
@@ -48,17 +51,23 @@ function cleanResource(resource) {
 }
 
 $(document).on('click','.forclick',function(){
+  currentScore = 0;
   $("#comment-textarea").val($(this).text());
   $("#hideDiv").css("visibility", "hidden");
-  $("#scoreP").text("The toxicity score in the text is: ");
+  $("#scoreP").text("I think the toxicity score in the text is: ");
 });
 
 $(document).on('input', '#slider', function() {
-    $('#slider_value').html( $(this).val()+"%" );
+  $('#slider_value').html( $(this).val()+"%" );
 });
 
+function resetButtons(){
+  currentScore = 0;
+  $("#hideDiv").css("visibility", "hidden");
+  $("#scoreP").text("I think the toxicity score in the text is: ");
+}
+
 function findScore() {
-  console.log("clicked the button");
   const analyzeURL = 'https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key=AIzaSyAXBN-B4-kxdC0wG9IJWaLNDonVIY_Ei8M';
   const x = new XMLHttpRequest();
   var msg = $("#comment-textarea").val() || ".";
@@ -71,12 +80,27 @@ function findScore() {
   x.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         scoretext = $("#scoreP").text();
-        score = this.response.attributeScores.TOXICITY.summaryScore.value;
-        scoretext+= " "+(score*100).toFixed(2)+"%";
+        currentScore = this.response.attributeScores.TOXICITY.summaryScore.value;
+        currentScore = currentScore.toFixed(2);
+        scoretext+= " "+(currentScore*100)+"%";
         $("#scoreP").text(scoretext);
+        if(currentScore < 0.4){
+          $("#infoSpan").text("(It seems the language in the comment is likely to perceived as civil to thers. Keep it up!!)");
+          $("#infoDiv").css("background-color","#AACBC8");
+        }
+        else if(currentScore > 0.4 &&  currentScore < 0.7){
+          $("#infoSpan").text("(I am not sure whether the text can be perceived as toxic to others.Maybe you can give your opinion!!)");
+          $("#infoDiv").css("background-color","#D4D6B5");
+        }
+        else{
+          $("#infoSpan").text("(It looks like the comment has language others might consider disrespectful or rude. Please be respectful and criticize ideas, not people!!)");
+          $("#infoDiv").css("background-color","#D6BEB6");
+        }
+
         $("#hideDiv").css("visibility", "visible");
         $("#hideDiv1").css("visibility", "hidden");
-        console.log(score);
+        console.log((currentScore*100).toFixed(2));
+        console.log(scoretext);
       };
   };
   x.send(composedComment);
@@ -94,6 +118,7 @@ function feedback(){
 
   var data = [
      ['OriginalMessage', msg],
+     ['MLScore', currentScore],
      ['userScore', userScore],
      ['userScoreReason', userScoreReason],
      ['otherOption', otherOption],

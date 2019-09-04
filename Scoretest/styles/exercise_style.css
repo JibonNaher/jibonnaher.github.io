@@ -44,6 +44,9 @@ textarea{
 #scoreP{
   font-size: 10px;
 }
+#infoDiv{
+  padding: 5px;
+}
 
 .article-text {
   font-size: 16.5px;

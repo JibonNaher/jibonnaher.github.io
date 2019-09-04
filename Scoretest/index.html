@@ -58,14 +58,14 @@
   <div id="comment-section-break"></div>
   <div class="reply-out">
     <div class="comment-reply reply-in1">
-      <textarea id="comment-textarea" placeholder="Type a draft comment to view the ML score" class="reply-textarea"></textarea>
+      <textarea id="comment-textarea" onchange="resetButtons()" placeholder="Type a draft comment to view the ML score" class="reply-textarea"></textarea>
       <div>
         <button id ="checkBtn" type="button" class="btn btn-info" onclick="findScore()">Check Score</button>
-        <p id ="scoreP" > The toxicity score in the text is:  </p>
+        <p id ="scoreP" > I think the toxicity score in the text is:  </p>
         <div id ="hideDiv">
-          <span class = "infoSpan">Likely to perceived as disrespectful or rude to other people in the discussion</span>
+          <div id = "infoDiv"><span id ="infoSpan" class = "infoSpan"></span></div>
           <br><br>
-          <button id ="disagreeBtn" >Disagree?</button>
+          <button id ="disagreeBtn" >Disagree with the score?</button>
         </div>
       </div>
     </div>
@@ -99,7 +99,7 @@
       <span class="close">&times;</span>
       <div>
         <br>
-        What should be the toxicity in your opinion: <input type="range" id="slider" value="50" min="0" max="100" step="0.1" />
+        What should be the toxicity in your opinion: <input type="range" id="slider" value="50" min="0" max="100" step="1" />
         <span id="slider_value">50%</span>
         <br><br><div>Please explain the reason for your choice. It will help us to update the model after reviewing by the moderator:</div>
         <br><div><textarea id  = "userScoreReason" placeholder="Please explain the reason for your choice"></textarea></div><br><br>
