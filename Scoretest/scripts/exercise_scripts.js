@@ -68,6 +68,8 @@ function resetButtons(){
 }
 
 function findScore() {
+  $("#hideDiv").css("visibility", "hidden");
+  $("#scoreP").css("visibility", "hidden");
   const analyzeURL = 'https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key=AIzaSyAXBN-B4-kxdC0wG9IJWaLNDonVIY_Ei8M';
   const x = new XMLHttpRequest();
   var msg = $("#comment-textarea").val() || ".";
@@ -79,11 +81,13 @@ function findScore() {
   x.responseType = 'json';
   x.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
-        scoretext = $("#scoreP").text();
+        //scoretext = $("#scoreP").text();
+
         currentScore = this.response.attributeScores.TOXICITY.summaryScore.value;
         currentScore = currentScore.toFixed(2);
-        scoretext+= " "+(currentScore*100)+"%";
+        scoretext = "I think the toxicity score in the text is:  "+(currentScore*100)+"%";
         $("#scoreP").text(scoretext);
+        $("#scoreP").css("visibility", "visible");
         if(currentScore < 0.4){
           $("#infoSpan").text("(It seems the language in the comment is likely to perceived as civil to thers. Keep it up!!)");
           $("#infoDiv").css("background-color","#AACBC8");
