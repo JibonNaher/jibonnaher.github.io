@@ -37,12 +37,12 @@ textarea{
 }
 
 #hideDiv{
-  font-size: 10px;
+  font-size: 12px;
   visibility: hidden;
 }
 
 #scoreP{
-  font-size: 10px;
+  font-size: 12px;
 }
 #infoDiv{
   padding: 5px;
