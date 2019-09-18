@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <link rel="stylesheet" type="text/css" href="./styles/exercise_style.css">
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script src="./scripts/exercise_scripts.js"></script>
+
+  <title>Understanding ML Score</title>
+</head>
+<body>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <!--<script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-app.js"></script>-->
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#config-web-app -->
+
+      <!--<script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-database.js"></script>
+
+  <script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+      apiKey: "AIzaSyCvn4iUm8Bq2GY0twaT0deGwZJrekJfOyA",
+      authDomain: "discussion-5e4ef.firebaseapp.com",
+      databaseURL: "https://discussion-5e4ef.firebaseio.com",
+      projectId: "discussion-5e4ef",
+      storageBucket: "discussion-5e4ef.appspot.com",
+      messagingSenderId: "502504758913",
+      appId: "1:502504758913:web:702d988d488a4a88"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>-->
+
+  <div id="main-content">
+    <div id="headline">Help us Understanding the Machine Learning (ML) Output</div>
+    <div id="topdesc">Select text from the following list or write your own text to find out the reasoning behind the ML score</div>
+    <div id="author-break"></div>
+  </div>
+  <br>
+  <div id="headline-article-break"></div>
+  <div class="article-text">
+    The toxic comment in online discusssion means whether a comment is a rude, disrespectful, or unreasonable comment that is likely to make people leave a discussion. <br>
+    <br>
+    We are using <a href="https://www.perspectiveapi.com/" target="_blank">Google's perspectiveAPI</a> to measure the probability of a text to <b>perceived</b> as toxic in a discussion in percentage scale.
+    Perspective’s scoring system was trained using hundreds of thousands of human-moderated comments to identify patterns that make a comment “toxic”. <br>
+    As a user of online discussion, we want to understand how this ML model scoring the toxicity of a text and how to improve the output.
+  </div>
+    <!-- <div id="article-voting" class="secondary-interactions">
+      <button class="response-button" onclick="buttonClicked('downvote', this);" type="button"> <img id="downvote-article-icon-1" class="button-icon" src='./resources/downvote.png'> Downvote </button>
+      <button class="response-button" onclick="buttonClicked('upvote', this);" type="button"> <img id="upvote-article-icon-1" class="button-icon" src='./resources/upvote.png'> Upvote </button>
+    </div> -->
+
+
+  <div id="comment-section-break"></div>
+  <div class="reply-out">
+    <div class="comment-reply reply-in1">
+      <div> Select one from the exisitng comments of a discussion in the context of "Climate Change"
+      </div>
+      <div class="comment-reply reply-in2">
+        <span class = "forclick">They are liberal idiots who are uneducated.</span><br>
+        <span class = "forclick">They're stupid, it's getting warmer, we should enjoy it while it lasts.</span><br>
+        <span class = "forclick">They are uninformed or ignorant</span><br>
+        <span class = "forclick">Their opinion, just don't force it down my throat</span><br>
+        <span class = "forclick">I respect them but I believe they think I am stupid and only thinking short-term. I believe we don't know what will happen long-term regardless of supporting regulation regarding climate change. Regulation impedes industry and job creation.</span><br>
+        <span class = "forclick">I don't care. They are usually democrats.</span><br>
+        <span class = "forclick">Crooked science. There is no consensus</span><br>
+        <span class = "forclick">Poorly educated, ultimately not their fault. I blame the American educational system</span><br>
+        <span class ="forclick">I think there is a man-made component to climate change, but am afraid the government remedies are potentially far-worse than the disease.</span><br>
+        <span class = "forclick">I think it exists. But, I am not big on regulations regarding climate change. The EPA regulates way too much.</span><br>
+        <span class = "forclick">Haven't seen unbiased data</span><br>
+        <span class = "forclick">Our government needs to do everything it can to combat the causes and effects of climate change. In addition, it is our responsibility as citizens of the world to reduce our use of resources and preserve our environment.</span><br>
+        <span class = "forclick">Climate change is real. The reasons for certain phenomena are not well understood. There is plenty of research yet to be done, and a great deal more to be understood.</span><br>
+      </div>
+    </div>
+    <div> OR,
+    </div>
+    <div class="comment-reply reply-in1">
+      <textarea id="comment-textarea" onchange="resetButtons()" placeholder="Type a draft comment to view the ML score" class="reply-textarea"></textarea>
+      <div>
+        <button id ="checkBtn" type="button" class="btn btn-info" onclick="findScore()">Check Score</button>
+        <div id ="hideDiv">
+          <p id ="scoreP" > I think the toxicity score in the text is:  </p>
+          <div id = "infoDiv"><span id ="infoSpan" class = "infoSpan"></span></div>
+          <br><br>
+          <button id ="disagreeBtn" >Disagree with the score? Please give your opinion.</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="myModal" class="modal">
+
+    <div class="modal-content">
+
+      <span class="close">&times;</span>
+      <div>
+        <br>
+        What should be the toxicity in your opinion: <input type="range" id="slider" value="50" min="0" max="100" step="1" />
+        <span id="slider_value">50%</span>
+        <br><br><div>Please explain the reason for your choice. It will help us to update the ML model after reviewing by the moderator:</div>
+        <br><div><textarea id  = "userScoreReason" placeholder="Please explain the reason for your choice"></textarea></div><br><br>
+        I wish I can see: <br>
+        <input type="checkbox" name="option" value="option1"> Some example having higher and lower than this one<br>
+        <input type="checkbox" name="option" value="option2"> Some of the highest and lowest scored examples <br>
+        <input type="checkbox" name="option" value="option3"> Some example having the same score as this one <br>
+        <input type="checkbox" name="option" value="option4"> Lots of more example to test from the dataset <br>
+        Other <input type ="text" id = "otherOption" placeholder="please specify"><br><br>
+        <br><button id ="feedbackBtn" onclick="feedback()">Submit</button>
+      </div>
+      <!-- <h1 style="text-align: center">You need to know</h1>
+      <p>What is this value:</p>
+
+      <p>How it is calculated:</p>
+
+      <p>How it can be used in the moderation:</p>
+
+      <h1 style="text-align: center">Your feedback</h1>
+
+      <p>What is your position on the value:</p>
+
+      <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+      <span> Score : </span><span id="user_score"></span>
+
+      <p>Why do you think so:</p>
+      <textarea id="feedback" style="width:95%;height:80px;"></textarea>
+      <br>
+      <button onclick="sendfeedback()">Submit</button> -->
+
+    </div>
+
+  </div>
+
+  <script>
+    // Get the modal
+   var modal = document.getElementById('myModal');
+   // Get the button that opens the modal
+   var btn = document.getElementById("disagreeBtn");
+   // Get the <span> element that closes the modal
+   var span = document.getElementsByClassName("close")[0];
+   // When the user clicks on the button, open the modal
+   btn.onclick = function() {
+       modal.style.display = "block";
+   }
+   // When the user clicks on <span> (x), close the modal
+   span.onclick = function() {
+       modal.style.display = "none";
+   }
+   // When the user clicks anywhere outside of the modal, close it
+   window.onclick = function(event) {
+       if (event.target == modal) {
+           modal.style.display = "none";
+       }
+   }
+  </script>
+
+
+
+  <!--   csv file test
+<script>
+var data = [
+   ['Foo', 'programmer'],
+   ['Bar', 'bus driver'],
+   ['Moo', 'Reindeer Hunter']
+];
+
+
+function download_csv() {
+    var csv = 'Name,Title\n';
+    data.forEach(function(row) {
+            csv += row.join(',');
+            csv += "\n";
+    });
+
+    console.log(csv);
+    var hiddenElement = document.createElement('a');
+    hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+    hiddenElement.target = '_blank';
+    hiddenElement.download = 'people.csv';
+    hiddenElement.click();
+}
+</script>
+
+<button onclick="download_csv()">Download CSV</button> -->
+
+<!--  get checkbox values
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("button").click(function(){
+            var favorite = [];
+            $.each($("input[name='sport']:checked"), function(){
+                favorite.push($(this).val());
+            });
+            alert("My favourite sports are: " + favorite.join(", "));
+        });
+    });
+</script> -->
+
+</body>
+
+</html>
