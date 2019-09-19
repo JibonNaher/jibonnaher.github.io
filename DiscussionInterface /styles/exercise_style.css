@@ -1,7 +1,7 @@
 
 body {
   background-color: #FFFFFF;
-  font-family: "Open Sans";
+  /* font-family: "Open Sans"; */
   line-height: 1.2;
   width: 85%;
   margin: 0 auto;
@@ -37,12 +37,12 @@ textarea{
 }
 
 #hideDiv{
-  font-size: 12px;
+  font-size: 13px;
   visibility: hidden;
 }
 
 #scoreP{
-  font-size: 12px;
+  font-size: 13px;
 }
 #infoDiv{
   padding: 5px;
@@ -249,10 +249,10 @@ textarea{
   float: right;
   flex: 0 0 100%;
   bottom: 0;
-  width: 30%;
+  width: 33%;
   padding: 3px;
   margin-top: 15px;
-  border: 1px solid #888;
+  border-left: 1px solid #888;
 }
 
 .reply-out{
@@ -282,16 +282,16 @@ textarea{
   flex: 0 0 100%;
   float:left;
   overflow:scroll;
-  height: 200px;
+  height: 150px;
   font-size: 12px;
   padding: 5px;
   margin-top: 5px;
-  margin-bottom: 5px;
 }
 
 ::-webkit-scrollbar {
   -webkit-appearance: none;
-  width: 10px;
+  width: 5px;
+  height: 50px;
 }
 ::-webkit-scrollbar-thumb {
   border-radius: 5px;
@@ -325,7 +325,7 @@ textarea{
 
 /* Modal Content/Box */
 .modal-content {
-  font-size: 13px;
+  font-size: 15px;
   background-color: #fefefe;
   margin: 12% auto; /* 15% from the top and centered */
   padding: 20px;

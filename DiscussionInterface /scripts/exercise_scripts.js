@@ -52,7 +52,7 @@ function cleanResource(resource) {
 
 $(document).on('click','.forclick',function(){
   currentScore = 0;
-  $("#comment-textarea").val($(this).text());
+  $("#comment-textarea-1").val($(this).text());
   $("#hideDiv").css("visibility", "hidden");
   $("#scoreP").text("I think the toxicity score in the text is: ");
 });
@@ -72,7 +72,7 @@ function findScore() {
   $("#scoreP").css("visibility", "hidden");
   const analyzeURL = 'https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key=AIzaSyAXBN-B4-kxdC0wG9IJWaLNDonVIY_Ei8M';
   const x = new XMLHttpRequest();
-  var msg = $("#comment-textarea").val() || ".";
+  var msg = $("#comment-textarea-1").val() || ".";
   const composedComment = `{comment: {text: "${msg}"},
       languages: ["en"],
       requestedAttributes: {TOXICITY:{}} }`;
@@ -111,7 +111,7 @@ function findScore() {
 }
 
 function feedback(){
-  var msg = $("#comment-textarea").val();
+  var msg = $("#comment-textarea-1").val();
   var userScore = $('#slider').val();
   var userScoreReason = $("#userScoreReason").val();
   var otherOption = $("#otherOption").val();

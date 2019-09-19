@@ -119,8 +119,8 @@
         </div>
 
         <div style = "float:left; width: 20%;">
-          <!-- <span>Civility Score</span> -->
-          <button id="description" style="visibility:hidden;"><img src='./resources/question.png' style="width:25px;height:25px;"></button>
+          <p>Toxicity Score: 40%</p>
+          <button id="description" style="visibility:visible;"><img src='./resources/question.png' style="width:30px;height:25px;"></button>
         </div>
       </div>
       <div style="float: right;">
@@ -132,11 +132,11 @@
   <div class = "right-bar">
     <div class="reply-out" style="height:auto;">
       <div class="comment-reply reply-in3">
-        <div style="color:#0E6655;"> In moderation process -
+        <div style="color:#0E6655;"> <strong>In reviewing your comment - </strong>
         </div>
         <ul>
           <li> We are using <a href="https://www.perspectiveapi.com/" target="_blank">Google's perspectiveAPI</a> to measure the probability of a text to <b>perceived</b> as toxic in the discussion </li>
-          <li> You can explore example texts to check the model. Select one from the following - 
+          <li> You can explore example texts to check the model. Select one from the following -
             <div class="comment-reply reply-in4">
               <span class = "forclick">1.They are liberal idiots who are uneducated.</span><br>
               <span class = "forclick">2. They're stupid, it's getting warmer, we should enjoy it while it lasts.</span><br>
@@ -155,14 +155,14 @@
             <div> OR,
             </div>
             <div class="comment-reply reply-in3">
-              <textarea id="comment-textarea" onchange="resetButtons()" placeholder="Type a draft comment to view the ML score" class="reply-textarea"></textarea>
+              <textarea id="comment-textarea-1" onchange="resetButtons()" placeholder="Type a draft comment to view the ML score" class="reply-textarea"></textarea>
               <div>
-                <button id ="checkBtn" type="button" class="btn btn-info" onclick="findScore()">Check Score</button>
+                <button id ="checkBtn" style="font-size:12px;" type="button" class="btn btn-info" onclick="findScore()">Check Score</button>
                 <div id ="hideDiv">
                   <p id ="scoreP" > I think the toxicity score in the text is:  </p>
                   <div id = "infoDiv"><span id ="infoSpan" class = "infoSpan"></span></div>
                   <br><br>
-                  <button id ="disagreeBtn" >Disagree with the score? Please give your opinion.</button>
+                  <button id ="disagreeBtn" style="font-size:12px;">Disagree with the score? Please give your opinion.</button>
                 </div>
               </div>
             </div>
@@ -215,6 +215,64 @@
 
   </div>
 
+  <div id="myModal-1" class="modal">
+
+    <div class="modal-content">
+
+      <span class="close">&times;</span>
+      <div>
+        <h3>Review process of the algorithm toxicity score</h3>
+        The current score of your comment from the algorithm: 40% <br>
+        In the moderation process:
+        <ul>
+          <li>Normally, it was found that comments having score < 20% do not need moderators review </li>
+          <li>Majority of comments having score > 90% are removed after reviewing by the moderators </li>
+          <li>Comments having score between 20% to 90% are carefully reviewed by the moderators always </li>
+        </ul>
+        <h3>Please give your feedback on the Score</h3>
+        Please give your valuable feedback about the score. This algorithm can make mistake, your feedback will help us to update the algorithm
+        <br>
+        <ul>
+          <li>
+            What should be the toxicity in your opinion: <input type="range" id="slider" value="50" min="0" max="100" step="1" />
+            <span id="slider_value">50%</span>
+          </li>
+          <li>
+            <div>Please explain the reason for your choice. It will help us to update the algorithm:</div>
+            <br><div><textarea id  = "userScoreReason" placeholder="Please explain the reason for your choice"></textarea></div>
+          </li>
+          <li>
+            I wish I can see: <br>
+            <input type="checkbox" name="option" value="option1"> Some examples having higher and lower than this one<br>
+            <input type="checkbox" name="option" value="option2"> Some of the highest and lowest scored examples <br>
+            <input type="checkbox" name="option" value="option3"> Some examples having the same score as this one <br>
+            Other <input type ="text" id = "otherOption" placeholder="please specify"><br><br>
+          </li>
+        <br><button id ="feedbackBtn" onclick="feedback()">Submit</button>
+      </div>
+      <!-- <h1 style="text-align: center">You need to know</h1>
+      <p>What is this value:</p>
+
+      <p>How it is calculated:</p>
+
+      <p>How it can be used in the moderation:</p>
+
+      <h1 style="text-align: center">Your feedback</h1>
+
+      <p>What is your position on the value:</p>
+
+      <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+      <span> Score : </span><span id="user_score"></span>
+
+      <p>Why do you think so:</p>
+      <textarea id="feedback" style="width:95%;height:80px;"></textarea>
+      <br>
+      <button onclick="sendfeedback()">Submit</button> -->
+
+    </div>
+
+  </div>
+
   <script>
     // Get the modal
    var modal = document.getElementById('myModal');
@@ -236,6 +294,29 @@
            modal.style.display = "none";
        }
    }
+
+
+   // Get the modal
+  var modal1 = document.getElementById('myModal-1');
+  // Get the button that opens the modal
+  var btn1 = document.getElementById("description");
+  // Get the <span> element that closes the modal
+  var span1 = document.getElementsByClassName("close")[1];
+  // When the user clicks on the button, open the modal
+  btn1.onclick = function() {
+      modal1.style.display = "block";
+  }
+  // When the user clicks on <span> (x), close the modal
+  span1.onclick = function() {
+      modal1.style.display = "none";
+  }
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+      if (event.target == modal1) {
+          modal1.style.display = "none";
+      }
+  }
+
   </script>
 
 
