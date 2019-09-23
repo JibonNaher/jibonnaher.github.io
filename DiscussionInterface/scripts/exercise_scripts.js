@@ -218,7 +218,7 @@ function next1buttonClicked(){
   console.log(un);
   if (!un.trim()){
     $("#uname").focus();
-    fetch('test.txt').then(response => response.text()).then(text => console.log(text))
+    fetch('resources/test.txt').then(response => response.text()).then(text => console.log(text))
     window.alert("Please write a temporary username.");
   }
   else{
