@@ -4,8 +4,7 @@ body {
   /* font-family: "Open Sans"; */
   line-height: 1.2;
   width: 85%;
-  margin: 0 auto;
-  padding: 20px;
+  margin: 100px !important;
 }
 button{
   background-color: #3CB1A5;
@@ -121,7 +120,7 @@ textarea{
   padding-left: 4px;
   resize: none;
   width: 90%;
-  height: 50px;
+  height: 110px;
 }
 .spanclass{
   height: 100px;
@@ -243,13 +242,13 @@ textarea{
 .left-bar{
   float: left;
   flex: 0 0 100%;
-  width: 65%;
+  width: 60%;
 }
 .right-bar{
   float: right;
   flex: 0 0 100%;
   bottom: 0;
-  width: 33%;
+  width: 37%;
   padding: 3px;
   margin-top: 15px;
   border-left: 1px solid #888;
@@ -261,6 +260,7 @@ textarea{
   flex-wrap: wrap;
   height: 120px;
   margin-top: 10px;
+  margin-bottom: 30px;
 }
 
 .reply-in1{
@@ -327,7 +327,7 @@ textarea{
 .modal-content {
   font-size: 15px;
   background-color: #fefefe;
-  margin: 12% auto; /* 15% from the top and centered */
+  margin: 1% auto; /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
   width: 50%; /* Could be more or less, depending on screen size */

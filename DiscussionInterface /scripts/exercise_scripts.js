@@ -1,3 +1,7 @@
+// var thinking_emoji = "&#x1F914";
+// var sad_emoji = "&#x1F622";
+// var relieved_emoji = "&#x1F60C";
+
 
 var DOWNVOTE_ON = "./resources/downvote_on.png";
 var DOWNVOTE_OFF = "./resources/downvote.png";
@@ -57,6 +61,64 @@ $(document).on('click','.forclick',function(){
   $("#scoreP").text("I think the toxicity score in the text is: ");
 });
 
+function delay(callback, ms) {
+  var timer = 0;
+  return function() {
+    var context = this, args = arguments;
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      callback.apply(context, args);
+    }, ms || 0);
+  };
+}
+
+$(function() {
+  $('[data-toggle="tooltip"]').tooltip();
+
+  $('#comment-textarea').keyup(delay(function (e) {
+    console.log('Time elapsed!', this.value);
+
+    const analyzeURL = 'https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key=AIzaSyAXBN-B4-kxdC0wG9IJWaLNDonVIY_Ei8M';
+    const x = new XMLHttpRequest();
+    var msg = $("#comment-textarea").val() || ".";
+    const composedComment = `{comment: {text: "${msg}"},
+        languages: ["en"],
+        requestedAttributes: {TOXICITY:{}} }`;
+    x.open('POST', analyzeURL, true);
+    x.setRequestHeader('Content-Type', 'application/json');
+    x.responseType = 'json';
+    x.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          //scoretext = $("#scoreP").text();
+
+          currentScore = this.response.attributeScores.TOXICITY.summaryScore.value;
+          currentScore = currentScore.toFixed(2);
+          //scoretext = +(currentScore)+"%";
+
+          if(currentScore < 0.4){
+            $("#emojiSpan").html("😌");
+            $("#scoreSpan").text(currentScore);
+            $("#description").css("visibility", "visible");
+          }
+          else if(currentScore > 0.4 &&  currentScore < 0.7){
+            $("#emojiSpan").html("🤔");
+            $("#scoreSpan").text(currentScore);
+            $("#description").css("visibility", "visible");
+          }
+          else{
+            $("#emojiSpan").html("😢");
+            $("#scoreSpan").text(currentScore);
+            $("#description").css("visibility", "visible");
+          }
+
+          console.log(currentScore);
+        };
+    };
+    x.send(composedComment);
+
+  }, 100));
+});
+
 $(document).on('input', '#slider', function() {
   $('#slider_value').html( $(this).val()+"%" );
 });
@@ -86,6 +148,7 @@ function findScore() {
         currentScore = this.response.attributeScores.TOXICITY.summaryScore.value;
         currentScore = currentScore.toFixed(2);
         scoretext = "I think the toxicity score in the text is:  "+(currentScore*100)+"%";
+        scoretext = "I think the toxicity score in the text is:  "+currentScore;
         $("#scoreP").text(scoretext);
         $("#scoreP").css("visibility", "visible");
         if(currentScore < 0.4){
@@ -129,20 +192,32 @@ function feedback(){
      ['favorite', favorite]
   ];
 
-  var csv = 'Name,Title\n';
-  data.forEach(function(row) {
-          csv += row.join(',');
-          csv += "\n";
-  });
+  // var csv = 'Name,Title\n';
+  // data.forEach(function(row) {
+  //         csv += row.join(',');
+  //         csv += "\n";
+  // });
 
-  console.log(csv);
-  var hiddenElement = document.createElement('a');
-  hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
-  hiddenElement.target = '_blank';
-  var today = new Date();
-  var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-  hiddenElement.download = time+'.csv';
-  hiddenElement.click();
+  // console.log(csv);
+  // var hiddenElement = document.createElement('a');
+  // hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+  // hiddenElement.target = '_blank';
+  // var today = new Date();
+  // var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+  // hiddenElement.download = time+'.csv';
+  // hiddenElement.click();
+}
+
+function next1buttonClicked(){
+  var un = $("#uname").val();
+  console.log(un);
+  if (!un.trim()){
+    $("#uname").focus();
+    window.alert("Please write a temporary username.");
+  }
+  else{
+    window.location.href='discussionPage.html';
+  }
 }
 
 function buttonClicked(buttonType, callerObject) {
