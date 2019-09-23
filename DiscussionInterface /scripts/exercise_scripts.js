@@ -72,7 +72,12 @@ function delay(callback, ms) {
   };
 }
 
+function disableF5(e) { if ((e.which || e.keyCode) == 116 || (e.which || e.keyCode) == 82) e.preventDefault(); };
+
 $(function() {
+
+  //$(document).on("keydown", disableF5);
+
   $('[data-toggle="tooltip"]').tooltip();
 
   $('#comment-textarea').keyup(delay(function (e) {
@@ -216,6 +221,11 @@ function next1buttonClicked(){
     window.alert("Please write a temporary username.");
   }
   else{
+    fetch('test.txt').then(response => response.text()).then(text => console.log(text))
+
+    var today = new Date();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    localStorage.username = un+"_"+time;
     window.location.href='discussionPage.html';
   }
 }
@@ -372,18 +382,18 @@ function unhideSecondaryInteractions() {
 function makeComment() {
   var commentTextArea = document.getElementById("comment-textarea");
   var commentText = commentTextArea.value.trim();
-
+  console.log("insode makeComment() function");
   // Check if the comment is legal.
   if (isIllegalString(commentText)) {
     return;
   }
 
-  firebase.database().ref(`/comments/`).push({
-      commentText
-  });
+  // firebase.database().ref(`/comments/`).push({
+  //     commentText
+  // });
 
-  cmn += 1;
-  avgi = avgscore;
+  // cmn += 1;
+  // avgi = avgscore;
 
   var commentHTML = `
   <div id="commentComNum" class="comment-box user-comment">
