@@ -218,7 +218,7 @@ function next1buttonClicked(){
   console.log(un);
   if (!un.trim()){
     $("#uname").focus();
-    fetch('resources/test.txt').then(response => response.text()).then(text => console.log(text))
+    //fetch('resources/test.txt').then(response => response.text()).then(text => console.log(text))
     window.alert("Please write a temporary username.");
   }
   else{
@@ -226,6 +226,7 @@ function next1buttonClicked(){
     var today = new Date();
     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     localStorage.username = un+"_"+time;
+
     window.location.href='discussionPage.html';
   }
 }
