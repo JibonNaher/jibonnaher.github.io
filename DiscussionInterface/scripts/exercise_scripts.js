@@ -59,6 +59,14 @@ $(document).on('click','.forclick',function(){
   $("#comment-textarea-1").val($(this).text());
   $("#hideDiv").css("visibility", "hidden");
   $("#scoreP").text("I think the toxicity score in the text is: ");
+
+  var index = new Date().getTime()
+  firebase.firestore().collection(`${localStorage.username}`).doc(`${index}`).set({
+    timeline: $(this).text()
+  }).catch(function(error) {
+    console.error('Error writing new message to Firebase Database', error);
+  });
+
 });
 
 function delay(callback, ms) {
@@ -86,6 +94,14 @@ $(function() {
     const analyzeURL = 'https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key=AIzaSyAXBN-B4-kxdC0wG9IJWaLNDonVIY_Ei8M';
     const x = new XMLHttpRequest();
     var msg = $("#comment-textarea").val() || ".";
+
+    var index = new Date().getTime()
+    firebase.firestore().collection(`${localStorage.username}`).doc(`${index}`).set({
+      comment_timeline: msg
+    }).catch(function(error) {
+      console.error('Error writing new message to Firebase Database', error);
+    });
+
     const composedComment = `{comment: {text: "${msg}"},
         languages: ["en"],
         requestedAttributes: {TOXICITY:{}} }`;
@@ -140,6 +156,14 @@ function findScore() {
   const analyzeURL = 'https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key=AIzaSyAXBN-B4-kxdC0wG9IJWaLNDonVIY_Ei8M';
   const x = new XMLHttpRequest();
   var msg = $("#comment-textarea-1").val() || ".";
+
+  var index = new Date().getTime()
+  firebase.firestore().collection(`${localStorage.username}`).doc(`${index}`).set({
+    timeline: msg
+  }).catch(function(error) {
+    console.error('Error writing new message to Firebase Database', error);
+  });
+
   const composedComment = `{comment: {text: "${msg}"},
       languages: ["en"],
       requestedAttributes: {TOXICITY:{}} }`;
@@ -176,6 +200,7 @@ function findScore() {
       };
   };
   x.send(composedComment);
+
 }
 
 function feedback(){
@@ -196,6 +221,18 @@ function feedback(){
      ['otherOption', otherOption],
      ['favorite', favorite]
   ];
+
+  var index = new Date().getTime()
+  firebase.firestore().collection(`${localStorage.username}`).doc(`${index}`).set({
+    OriginalMessage: msg,
+    MLScore: currentScore,
+    userScore: userScore,
+    userScoreReason: userScoreReason,
+    otherOption: otherOption,
+    favorite: favorite
+  }).catch(function(error) {
+    console.error('Error writing new message to Firebase Database', error);
+  });
 
   // var csv = 'Name,Title\n';
   // data.forEach(function(row) {
@@ -383,6 +420,14 @@ function unhideSecondaryInteractions() {
 function makeComment() {
   var commentTextArea = document.getElementById("comment-textarea");
   var commentText = commentTextArea.value.trim();
+
+  var index = new Date().getTime()
+  firebase.firestore().collection(`${localStorage.username}`).doc(`${index}`).set({
+    submit: commentText
+  }).catch(function(error) {
+    console.error('Error writing new message to Firebase Database', error);
+  });
+
   console.log("insode makeComment() function");
   // Check if the comment is legal.
   if (isIllegalString(commentText)) {
