@@ -65,7 +65,7 @@
       <div id="comment-header">Comments</div>
       <br>
       <div id="comment1" class="comment-box">
-       <div class="comment-username">User 2647   <a>(35 minutes ago)</a></div>
+      <div class="comment-username">User 2647   <a>(35 minutes ago)</a></div>
         <div class="comment-text">Stop discriminating against women and the disabled. We have to consider the both sides of the argument and reorganize the program</div>
         <!-- <div class="comment-interactions secondary-interactions">
           <button id="reply-button-1" class="response-button reply-button" onclick="buttonClicked('reply', this)">Reply</button>
@@ -97,7 +97,7 @@
       </div>
 
       <div id="comment4" class="comment-box">
-       <div class="comment-username">User 5472   <a>(7 minutes ago)</a></div>
+      <div class="comment-username">User 5472   <a>(7 minutes ago)</a></div>
         <div class="comment-text">Calm down. What most people say is that the benefits should be given, but the method is wrong.</div>
         <!-- <div class="comment-interactions secondary-interactions">
           <button id="reply-button-4" class="response-button reply-button" onclick="buttonClicked('reply', this)">Reply</button>
@@ -128,7 +128,7 @@
 
         <div style = "float:left; width: 20%;">
           <p id = "hideP">
-              <span id = "emojiSpan"></span>
+              <span id = "emojiSpan" style="font-size: 20px;"></span>
               <span id = "scoreSpan"></span>
           </p>
           <button id="description" style="visibility:hidden;" data-toggle="tooltip" title="What's this emoji and score mean?"><img src='./resources/question.png' style="width:30px;height:25px;"></button>
@@ -138,7 +138,10 @@
         <button id="comment-submit-button-1" class="reply-in2 response-button" onclick="buttonClicked('comment-submit', this)">Comment</button>
       </div>
     </div>
-    <div id="article-break"> </div>
+    <div>
+        <button id="secondPagenextBtn" class="response-button"  style = "float: right; margin: 10px; visibility: hidden;" onclick="next2buttonClicked()">NEXT</button>
+    </div>
+
   </div>
 
   <div class = "right-bar">
@@ -180,6 +183,7 @@
             </div>
           </li>
         </ul>
+      </div>
     </div>
   </div>
 

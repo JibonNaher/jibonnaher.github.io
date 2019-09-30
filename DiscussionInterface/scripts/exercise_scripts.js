@@ -45,6 +45,7 @@ localStorage.setItem("commentComplete", "not_complete");
 
 //            add new items         //
 var currentScore = 0;
+var comment_number = 0;
 
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
@@ -213,24 +214,6 @@ function feedback(){
   // hiddenElement.click();
 }
 
-function next1buttonClicked(){
-  var un = $("#uname").val();
-  console.log(un);
-  if (!un.trim()){
-    $("#uname").focus();
-    //fetch('resources/test.txt').then(response => response.text()).then(text => console.log(text))
-    window.alert("Please write a temporary username.");
-  }
-  else{
-
-    var today = new Date();
-    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    localStorage.username = un+"_"+time;
-
-    window.location.href='discussionPage.html';
-  }
-}
-
 function buttonClicked(buttonType, callerObject) {
   if (buttonType==="downvote") {
     fireDownvote(callerObject);
@@ -367,6 +350,10 @@ function fireReplySubmit(callerObject) {
 function fireComment(callerObject) {
 
   var commentText = makeComment();
+  comment_number++;
+  if(comment_number > 1){
+    $("#secondPagenextBtn").css("visibility", "visible");
+  }
 
 }
 

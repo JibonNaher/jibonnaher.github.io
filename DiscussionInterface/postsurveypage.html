@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="./styles/exercise_style.css">
+  <!-- <link href="http://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+  <!-- <script src="./scripts/exercise_scripts.js"></script> -->
+  <script src="./scripts/postsurveypage_scripts.js"></script>
+
+  <title>Discussion Interface</title>
+</head>
+<body style="margin-top:50px !important;">
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <!--<script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-app.js"></script>-->
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#config-web-app -->
+
+      <!--<script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-database.js"></script>
+
+  <script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+      apiKey: "AIzaSyCvn4iUm8Bq2GY0twaT0deGwZJrekJfOyA",
+      authDomain: "discussion-5e4ef.firebaseapp.com",
+      databaseURL: "https://discussion-5e4ef.firebaseio.com",
+      projectId: "discussion-5e4ef",
+      storageBucket: "discussion-5e4ef.appspot.com",
+      messagingSenderId: "502504758913",
+      appId: "1:502504758913:web:702d988d488a4a88"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>-->
+
+  <div id="main-content">
+   <div id="topdesc" >STEP#1: SURVEY RESPONSE -1 </div>
+   <div id="headline" style="font-size: 25px;">Please answer the following questions and click "NEXT" when you are done</div>
+  </div>
+  <br>
+
+  <div class="article-text">
+    <ol>
+        <li>I am willing to let this moderation system(MS) make decisions for people like me: <br>
+            <span>Strongly disagree, 1</span>&nbsp;<input type="range" id="postsurveyslider1" value="4" min="1" max="7" step="1" style="width: 20%; display: inline;"/>
+            <span>7, Strongly Agree</span>&nbsp;
+            <span id="postsurveyslider1_value">(Current selection: 4)</span>
+        </li><br>
+        <li>I think it is important to watch this moderation system closely so that it does not take advantage of people like me: <br>
+            <span>Strongly disagree, 1</span>&nbsp;<input type="range" id="postsurveyslider2" value="4" min="1" max="7" step="1" style="width: 20%; display: inline;"/>
+            <span>7, Strongly Agree</span>&nbsp;
+            <span id="postsurveyslider2_value">(Current selection: 4)</span>
+        </li><br>
+        <li>This MS wants to understand how it’s decision affect people like me: <br>
+            <span>Strongly disagree, 1</span>&nbsp;<input type="range" id="postsurveyslider3" value="4" min="1" max="7" step="1" style="width: 20%; display: inline;"/>
+            <span>7, Strongly Agree</span>&nbsp;
+            <span id="postsurveyslider3_value">(Current selection: 4)</span>
+        </li><br>
+        <li>This MS wants to understand how it’s decision affect people like me: <br>
+            <span>Strongly disagree, 1</span>&nbsp;<input type="range" id="postsurveyslider3" value="4" min="1" max="7" step="1" style="width: 20%; display: inline;"/>
+            <span>7, Strongly Agree</span>&nbsp;
+            <span id="postsurveyslider3_value">(Current selection: 4)</span>
+        </li><br>
+    </ol>
+    <br><br>
+    <button id="postsurveyPagenextBtn" class="response-button"  style = "float: right; margin-right: 200px; padding: 10px;" onclick="next4buttonClicked()">NEXT</button>
+  </div>
+
+</body>
+
+</html>

@@ -13,8 +13,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-
-  <script src="./scripts/exercise_scripts.js"></script>
+  <!-- <script src="./scripts/exercise_scripts.js"></script> -->
+  <script src="./scripts/indexpage_scripts.js"></script>
 
   <title>Discussion Interface</title>
 </head>
@@ -45,27 +45,28 @@
 
   <div id="main-content">
    <div id="topdesc" >INSTRUCTION</div>
-   <div id="headline">Test for updating a comment sorting algorithm</div>
+   <div id="headline">Test for evaluating a comment sorting algorithm</div>
   </div>
   <br>
   <div id="headline-article-break"></div>
   <div class="article-text">
     <ul><h3>What are we testing?</h3>
       <li>In this experiment, we are testing a new comment scoring algorithm for sorting the comments in online discussion by the toxicity score.</li>
-      <li>Here, <strong>toxic comment</strong> in online discusssion means whether a comment is a rude, disrespectful, or unreasonable comment that is likely to make people leave a discussion.</li>
+      <li>Here, <strong>toxic comment</strong> in online discusssion means whether a comment is rude, disrespectful, or unreasonable that is likely to make people leave a discussion.</li>
       <li>We are using a <strong>Machine Learning </strong>based model to find the toxicity score of a comment.</li>
     </ul>
-    <ul><h3>What are the steps to follow?</h3>
+
+    <ol><h3>What are the steps to follow?</h3>
       <li>Please write down a temporary username for the test: <input id = "uname" type ="text"/></li>
-      <li>You will be in a discussion interface about <strong>"Climate change"</strong></li>
-      <li>You will also find information about the scoring algorithm. You can exmplore the algorithm there</li>
-      <li>You will have to write 2 comments as an user, also give feedback about the algorithmic output about the comments</li>
-      <li>After writing the comments, you can explore the discussion by like, report others comments (optional)</li>
-      <li>After writing 2 comments in the discussion, a "Next" button will be available. Please click on that button</li>
-      <li>Please click on the <strong>"Next"</strong> button below to go the discussion page</li>
-    </ul>
+      <li>Submit a survey response (expected time: <strong>6 minutes</strong>)</li>
+      <li>Explore a simulated discussion interface (expected time: <strong>10 minutes</strong>)</li>
+      <li>Write 2 comments on the discussion (expected time: <strong>6 minutes</strong>)</li>
+      <li>Submit another survey response (expected time: <strong>6 minutes</strong>)</li></li>
+      <li>(Optional) Like, Report others' comment</li>
+    </ol>
+
     <br><br>
-    <button id="firstPagenextBtn" class="response-button"  style = "float: right; margin-right: 200px; padding: 10px;" onclick="next1buttonClicked()">NEXT</button>
+    <button id="indexPagenextBtn" class="response-button"  style = "float: right; margin-right: 200px; padding: 10px;" onclick="next1buttonClicked()">START</button>
   </div>
 
 </body>
