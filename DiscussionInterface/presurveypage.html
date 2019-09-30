@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="./styles/exercise_style.css">
+  <!-- <link href="http://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+  <!-- <script src="./scripts/exercise_scripts.js"></script> -->
+  <script src="./scripts/presurveypage_scripts.js"></script>
+
+  <title>Discussion Interface</title>
+</head>
+<body style="margin-top:50px !important;">
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-firestore.js"></script>
+
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+    // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyDOt8cG1zUH70E1ru0e10gfVNaLF10kN0s",
+            authDomain: "discussioninterface.firebaseapp.com",
+            databaseURL: "https://discussioninterface.firebaseio.com",
+            projectId: "discussioninterface",
+            storageBucket: "discussioninterface.appspot.com",
+            messagingSenderId: "315250173270",
+            appId: "1:315250173270:web:a359c74adfc7f76543a2f7"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
+  <div id="main-content">
+   <div id="topdesc" ><u>STEP#1: SURVEY RESPONSE -1 </u></div> <br>
+   <div id="headline" style="font-size: 25px;">Please answer the following questions and click "NEXT" when you are done</div>
+  </div>
+  <br>
+
+  <div id="article-break"> </div>
+  <div class="article-text">
+    <ol>
+        <li>
+            <p>What is your gender? <br>
+                <input class="surveyRadioButton" type="radio" name="gender" value="Female"> Female<br>
+                <input class="surveyRadioButton" type="radio" name="gender" value="Male"> Male<br>
+                <input class="surveyRadioButton" type="radio" name="gender" value="Other"> Other <br>
+            </p>
+        </li>
+        <li>
+            <p>What is your age? &nbsp; &nbsp;
+                <input type="number" name="age" min="18" max="65" style="width: 20%;">
+            </p>
+        </li>
+
+    </ol>
+    <br><br>
+    <button id="presurveyPagenextBtn" class="response-button"  style = "float: right; margin-right: 200px; padding: 10px;" onclick="next2buttonClicked()">NEXT</button>
+  </div>
+
+</body>
+
+</html>
