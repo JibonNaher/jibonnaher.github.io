@@ -20,9 +20,8 @@ $(document).on('input', '#postsurveyslider4', function() {
     ans4 = $(this).val();
 });
 
-function next2buttonClicked(){
-
-    firebase.firestore().collection(`${localStorage.username}`).doc('presurvey').set({
+function next4buttonClicked(){
+    firebase.firestore().collection(`${localStorage.username}`).doc('postsurvey').set({
       answer1: ans1,
       answer2: ans2,
       answer3: ans3,
@@ -30,6 +29,4 @@ function next2buttonClicked(){
     }).catch(function(error) {
       console.error('Error writing new message to Firebase Database', error);
     });
-
-    window.location.href='discussionPage.html';
 }

@@ -9,7 +9,7 @@ function next2buttonClicked(){
       age: age
     }).catch(function(error) {
       console.error('Error writing new message to Firebase Database', error);
-    });
-
-    window.location.href='discussionPage.html';
+    }).then(() => {
+        window.location.href='discussionPage.html';
+    })
 }
