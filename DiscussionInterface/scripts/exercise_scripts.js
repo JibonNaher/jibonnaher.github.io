@@ -205,7 +205,7 @@ function findScore() {
 }
 
 function feedback(){
-  var msg = $("#comment-textarea-1").val();
+  var msg = $("#comment-textarea").val();
   var userScore = $('#slider').val();
   var userScoreReason = $("#userScoreReason").val();
   var otherOption = $("#otherOption").val();
