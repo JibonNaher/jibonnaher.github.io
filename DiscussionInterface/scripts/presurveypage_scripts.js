@@ -4,25 +4,12 @@ function next2buttonClicked(){
     var gender = $('input[name=gender]:checked').val();
     var age = $('input[name=age]').val();
 
-    var presurveydata = [
-        { gender: gender, age: age }
-    ];
-
-    var index = ""+new Date().getTime();
-
-    // database.ref('users/' + localStorage.username).set({
-    //     presurvey: presurveydata
-    // });
-
-    firebase.firestore().collection(localStorage.username).doc(index).set({
-        presurvey: presurveydata
+    firebase.firestore().collection(`${localStorage.username}`).doc('presurvey').set({
+      gender: gender,
+      age: age
     }).catch(function(error) {
-    console.error("Error writing new message to Firebase Database", error);
+      console.error('Error writing new message to Firebase Database', error);
     });
 
-    // firebase.database().ref(`$localStorage.username/feedback/`).push({
-    //     presurveydata
-    // });
-
-    window.location.href='discussionpage.html';
+    window.location.href='discussionPage.html';
 }

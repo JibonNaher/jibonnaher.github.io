@@ -20,28 +20,31 @@
 </head>
 <body style="margin-top:50px !important;">
   <!-- The core Firebase JS SDK is always required and must be listed first -->
-  <!--<script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-app.js"></script>-->
+  <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-firestore.js">
+    const firebase = require("firebase");
+    // Required for side-effects
+    require("firebase/firestore");
+  </script>
 
   <!-- TODO: Add SDKs for Firebase products that you want to use
-      https://firebase.google.com/docs/web/setup#config-web-app -->
-
-      <!--<script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-auth.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-database.js"></script>
+      https://firebase.google.com/docs/web/setup#available-libraries -->
 
   <script>
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-      apiKey: "AIzaSyCvn4iUm8Bq2GY0twaT0deGwZJrekJfOyA",
-      authDomain: "discussion-5e4ef.firebaseapp.com",
-      databaseURL: "https://discussion-5e4ef.firebaseio.com",
-      projectId: "discussion-5e4ef",
-      storageBucket: "discussion-5e4ef.appspot.com",
-      messagingSenderId: "502504758913",
-      appId: "1:502504758913:web:702d988d488a4a88"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-</script>-->
+    // Your web app's Firebase configuration
+
+    var firebaseConfig = {
+      apiKey: "AIzaSyDOt8cG1zUH70E1ru0e10gfVNaLF10kN0s",
+      authDomain: "discussioninterface.firebaseapp.com",
+      databaseURL: "https://discussioninterface.firebaseio.com",
+      projectId: "discussioninterface",
+      storageBucket: "",
+      messagingSenderId: "315250173270",
+      appId: "1:315250173270:web:a359c74adfc7f76543a2f7"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
 
   <div id="main-content">
    <div id="topdesc" >STEP#1: SURVEY RESPONSE -1 </div>

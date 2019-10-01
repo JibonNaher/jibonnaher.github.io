@@ -19,30 +19,32 @@
   <title>Discussion Interface</title>
 </head>
 <body style="margin-top:50px !important;">
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-database.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-firestore.js"></script>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-firestore.js">
+    const firebase = require("firebase");
+    // Required for side-effects
+    require("firebase/firestore");
+  </script>
 
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
 
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-        https://firebase.google.com/docs/web/setup#available-libraries -->
-
-    <script>
+  <script>
     // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyDOt8cG1zUH70E1ru0e10gfVNaLF10kN0s",
-            authDomain: "discussioninterface.firebaseapp.com",
-            databaseURL: "https://discussioninterface.firebaseio.com",
-            projectId: "discussioninterface",
-            storageBucket: "discussioninterface.appspot.com",
-            messagingSenderId: "315250173270",
-            appId: "1:315250173270:web:a359c74adfc7f76543a2f7"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-    </script>
+
+    var firebaseConfig = {
+      apiKey: "AIzaSyDOt8cG1zUH70E1ru0e10gfVNaLF10kN0s",
+      authDomain: "discussioninterface.firebaseapp.com",
+      databaseURL: "https://discussioninterface.firebaseio.com",
+      projectId: "discussioninterface",
+      storageBucket: "",
+      messagingSenderId: "315250173270",
+      appId: "1:315250173270:web:a359c74adfc7f76543a2f7"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
 
   <div id="main-content">
    <div id="topdesc" ><u>STEP#1: SURVEY RESPONSE -1 </u></div> <br>
