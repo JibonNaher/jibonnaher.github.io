@@ -55,6 +55,11 @@ function cleanResource(resource) {
   return resource.replace("./resources/", '');
 }
 
+function next3buttonClicked(){
+  // add code for data collection //
+  window.location.href='postsurveypage.html';
+}
+
 $(document).on('click','.forclick',function(){
   currentScore = 0;
   $("#comment-textarea-1").val($(this).text());
@@ -352,7 +357,7 @@ function fireComment(callerObject) {
   var commentText = makeComment();
   comment_number++;
   if(comment_number > 1){
-    $("#secondPagenextBtn").css("visibility", "visible");
+    $("#discussionPagenextBtn").css("visibility", "visible");
   }
 
 }
