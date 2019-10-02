@@ -60,15 +60,41 @@ function next3buttonClicked(){
   window.location.href='postsurveypage.html';
 }
 
+function getUTCDate(){
+  var date = new Date(Date.now());
+  var UTCdate = date.getUTCFullYear() + '-' +
+  ('00' + (date.getUTCMonth() + 1)).slice(-2) + '-' +
+  ('00' + date.getUTCDate()).slice(-2) + ' ' +
+  ('00' + date.getUTCHours()).slice(-2) + ':' +
+  ('00' + date.getUTCMinutes()).slice(-2) + ':' +
+  ('00' + date.getUTCSeconds()).slice(-2);
+  console.log(UTCdate)
+
+  return UTCdate;
+}
+
+$(document).on('click','#modellink', function(){
+  var UTCdate = getUTCDate();
+
+  firebase.firestore().collection(`${localStorage.username}`).doc(`${UTCdate}`).set({
+    action: "click on the perspectiveAPI link"
+  }).catch(function(error) {
+    console.error('Error writing new message to Firebase Database', error);
+  });
+});
+
 $(document).on('click','.forclick',function(){
   currentScore = 0;
   $("#comment-textarea-1").val($(this).text());
   $("#hideDiv").css("visibility", "hidden");
   $("#scoreP").text("I think the toxicity score in the text is: ");
 
-  var index = new Date().getTime()
-  firebase.firestore().collection(`${localStorage.username}`).doc(`${index}`).set({
-    timeline: $(this).text()
+  //var index = new Date().getTime()
+  var UTCdate = getUTCDate();
+
+  firebase.firestore().collection(`${localStorage.username}`).doc(`${UTCdate}`).set({
+    action: "click on the exploration text",
+    text: $(this).text()
   }).catch(function(error) {
     console.error('Error writing new message to Firebase Database', error);
   });
@@ -100,13 +126,6 @@ $(function() {
     const analyzeURL = 'https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key=AIzaSyAXBN-B4-kxdC0wG9IJWaLNDonVIY_Ei8M';
     const x = new XMLHttpRequest();
     var msg = $("#comment-textarea").val() || ".";
-
-    var index = new Date().getTime()
-    firebase.firestore().collection(`${localStorage.username}`).doc(`${index}`).set({
-      comment_timeline: msg
-    }).catch(function(error) {
-      console.error('Error writing new message to Firebase Database', error);
-    });
 
     const composedComment = `{comment: {text: "${msg}"},
         languages: ["en"],
@@ -143,7 +162,17 @@ $(function() {
     };
     x.send(composedComment);
 
-  }, 100));
+    // add in the database //
+    var UTCdate = getUTCDate();
+    firebase.firestore().collection(`${localStorage.username}`).doc(`${UTCdate}`).set({
+      action: "current version of typed comment",
+      text: msg,
+      score: currentScore
+    }).catch(function(error) {
+      console.error('Error writing new message to Firebase Database', error);
+    });
+
+  }, 450));
 });
 
 $(document).on('input', '#slider', function() {
@@ -163,13 +192,6 @@ function findScore() {
   const x = new XMLHttpRequest();
   var msg = $("#comment-textarea-1").val() || ".";
 
-  var index = new Date().getTime()
-  firebase.firestore().collection(`${localStorage.username}`).doc(`${index}`).set({
-    timeline: msg
-  }).catch(function(error) {
-    console.error('Error writing new message to Firebase Database', error);
-  });
-
   const composedComment = `{comment: {text: "${msg}"},
       languages: ["en"],
       requestedAttributes: {TOXICITY:{}} }`;
@@ -177,36 +199,44 @@ function findScore() {
   x.setRequestHeader('Content-Type', 'application/json');
   x.responseType = 'json';
   x.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        //scoretext = $("#scoreP").text();
+    if (this.readyState == 4 && this.status == 200) {
+      //scoretext = $("#scoreP").text();
 
-        currentScore = this.response.attributeScores.TOXICITY.summaryScore.value;
-        currentScore = currentScore.toFixed(2);
-        scoretext = "I think the toxicity score in the text is:  "+(currentScore*100)+"%";
-        scoretext = "I think the toxicity score in the text is:  "+currentScore;
-        $("#scoreP").text(scoretext);
-        $("#scoreP").css("visibility", "visible");
-        if(currentScore < 0.4){
-          $("#infoSpan").text("(It seems the language in the comment is likely to perceived as civil to thers. Keep it up!!)");
-          $("#infoDiv").css("background-color","#AACBC8");
-        }
-        else if(currentScore > 0.4 &&  currentScore < 0.7){
-          $("#infoSpan").text("(I am not sure whether the text can be perceived as toxic to others.Maybe you can give your opinion!!)");
-          $("#infoDiv").css("background-color","#D4D6B5");
-        }
-        else{
-          $("#infoSpan").text("(It looks like the comment has language others might consider disrespectful or rude. Please be respectful and criticize ideas, not people!!)");
-          $("#infoDiv").css("background-color","#D6BEB6");
-        }
+      currentScore = this.response.attributeScores.TOXICITY.summaryScore.value;
+      currentScore = currentScore.toFixed(2);
+      //scoretext = "I think the toxicity score in the text is:  "+(currentScore*100)+"%";
+      scoretext = "I think the toxicity score in the text is:  "+currentScore;
+      $("#scoreP").text(scoretext);
+      $("#scoreP").css("visibility", "visible");
+      if(currentScore < 0.4){
+        $("#infoSpan").text("(It seems the language in the comment is likely to perceived as civil to thers. Keep it up!!)");
+        $("#infoDiv").css("background-color","#AACBC8");
+      }
+      else if(currentScore > 0.4 &&  currentScore < 0.7){
+        $("#infoSpan").text("(I am not sure whether the text can be perceived as toxic to others.Maybe you can give your opinion!!)");
+        $("#infoDiv").css("background-color","#D4D6B5");
+      }
+      else{
+        $("#infoSpan").text("(It looks like the comment has language others might consider disrespectful or rude. Please be respectful and criticize ideas, not people!!)");
+        $("#infoDiv").css("background-color","#D6BEB6");
+      }
 
-        $("#hideDiv").css("visibility", "visible");
-        $("#hideDiv1").css("visibility", "hidden");
-        console.log((currentScore*100).toFixed(2));
-        console.log(scoretext);
-      };
+      $("#hideDiv").css("visibility", "visible");
+      $("#hideDiv1").css("visibility", "hidden");
+    };
+
+    // add in the database //
+    var UTCdate = getUTCDate();
+    firebase.firestore().collection(`${localStorage.username}`).doc(`${UTCdate}`).set({
+      action: "check score in the exploration bar",
+      text: msg,
+      score: currentScore
+    }).catch(function(error) {
+      console.error('Error writing new message to Firebase Database', error);
+    });
+
   };
   x.send(composedComment);
-
 }
 
 function feedback(){
@@ -397,6 +427,15 @@ function fireComment(callerObject) {
     $("#discussionPagenextBtn").css("visibility", "visible");
   }
 
+  var UTCdate = getUTCDate();
+  firebase.firestore().collection(`${localStorage.username}`).doc(`${UTCdate}`).set({
+    action: "submit comment",
+    comment_number: comment_number,
+    text: commentText
+  }).catch(function(error) {
+    console.error('Error writing new message to Firebase Database', error);
+  });
+
 }
 
 
@@ -412,13 +451,6 @@ function unhideSecondaryInteractions() {
 function makeComment() {
   var commentTextArea = document.getElementById("comment-textarea");
   var commentText = commentTextArea.value.trim();
-
-  var index = new Date().getTime()
-  firebase.firestore().collection(`${localStorage.username}`).doc(`${index}`).set({
-    submit: commentText
-  }).catch(function(error) {
-    console.error('Error writing new message to Firebase Database', error);
-  });
 
   console.log("insode makeComment() function");
   // Check if the comment is legal.
@@ -473,18 +505,6 @@ function makeComment() {
   return commentText
 }
 
-// https://stackoverflow.com/questions/12409299/how-to-get-current-formatted-date-dd-mm-yyyy-in-javascript-and-append-it-to-an-i#12409344
-function getDate() {
-  var today = new Date();
-
-  //https://stackoverflow.com/questions/9070604/how-to-convert-datetime-from-the-users-timezone-to-est-in-javascript
-  //EST
-  offset = -5.0
-  utc = today.getTime() + (today.getTimezoneOffset() * 60000);
-  serverDate = new Date(utc + (3600000*offset));
-
-  return serverDate.toLocaleString([], {day:'numeric', month: 'numeric', year: 'numeric', hour: '2-digit', minute:'2-digit'}).replace(",", "") + " EST";
-}
 
 function isEmpty (input) {
   if (input === "") {

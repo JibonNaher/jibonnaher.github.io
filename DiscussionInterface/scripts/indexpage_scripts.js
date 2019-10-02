@@ -1,3 +1,16 @@
+function getUTCDate(){
+  var date = new Date(Date.now());
+  var UTCdate = date.getUTCFullYear() + '-' +
+  ('00' + (date.getUTCMonth() + 1)).slice(-2) + '-' +
+  ('00' + date.getUTCDate()).slice(-2) + ' ' +
+  ('00' + date.getUTCHours()).slice(-2) + ':' +
+  ('00' + date.getUTCMinutes()).slice(-2) + ':' +
+  ('00' + date.getUTCSeconds()).slice(-2);
+  console.log(UTCdate)
+
+  return UTCdate;
+}
+
 function next1buttonClicked(){
   var un = $("#uname").val();
   console.log(un);
@@ -7,11 +20,8 @@ function next1buttonClicked(){
     window.alert("Please write a temporary username.");
   }
   else{
-
-    var today = new Date();
-    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    localStorage.username = un+"_"+time;
-
+    UTCdate = getUTCDate();
+    localStorage.username = un+"_"+UTCdate;
     window.location.href='presurveypage.html';
   }
 }
