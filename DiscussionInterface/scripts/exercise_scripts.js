@@ -89,6 +89,12 @@ $(document).on('click','.forclick',function(){
   $("#hideDiv").css("visibility", "hidden");
   $("#scoreP").text("I think the toxicity score in the text is: ");
 
+  firebase.firestore().collection(`${localStorage.username}`).doc('presurvey').set({
+    capital: true
+  }, { merge: true }).catch(function(error) {
+    console.error('Error writing new message to Firebase Database', error);
+  });
+
   //var index = new Date().getTime()
   var UTCdate = getUTCDate();
 
@@ -183,6 +189,17 @@ function resetButtons(){
   currentScore = 0;
   $("#hideDiv").css("visibility", "hidden");
   $("#scoreP").text("I think the toxicity score in the text is: ");
+  var msg = $("#comment-textarea-1").val() || ".";
+
+  // add in the database //
+  var UTCdate = getUTCDate();
+  firebase.firestore().collection(`${localStorage.username}`).doc(`${UTCdate}`).set({
+    action: "change text in the exploration bar",
+    text: msg
+  }).catch(function(error) {
+    console.error('Error writing new message to Firebase Database', error);
+  });
+
 }
 
 function findScore() {

@@ -47,37 +47,205 @@
   </script>
 
   <div id="main-content">
-   <div id="topdesc" >STEP#1: SURVEY RESPONSE -1 </div>
-   <div id="headline" style="font-size: 25px;">Please answer the following questions and click "NEXT" when you are done</div>
+      <div id="topdesc" ><u><span style="background-color: #40E0D0;">STEP#3:</span> SURVEY RESPONSE-2 </u>(Total questions: ?, Expected time: 15 minutes)</div> <br>
+      <!-- <div id="headline" style="font-size: 25px;">Please answer the following questions and click "NEXT" when you are done</div> -->
   </div>
   <br>
-
-  <div class="article-text">
-    <ol>
-        <li>I am willing to let this moderation system(MS) make decisions for people like me: <br>
+  <div id ="overall-transparency" class="article-text">
+    <div style="font-size: 20px;"><u>Part1</u><span>->Part2-> Part3-> Part4-> Part5-> Part6-> Part7-> Part8-> Part9</span></div><br>
+    <ol>This moderation system - <br><br>
+        <li>Wants to understand how its decisions affect people like me: <br>
             <span>Strongly disagree, 1</span>&nbsp;<input type="range" id="postsurveyslider1" value="4" min="1" max="7" step="1" style="width: 20%; display: inline;"/>
             <span>7, Strongly Agree</span>&nbsp;
             <span id="postsurveyslider1_value">(Current selection: 4)</span>
         </li><br>
-        <li>I think it is important to watch this moderation system closely so that it does not take advantage of people like me: <br>
+        <li>Provides information that is useful to people like me for making informed decisions: <br>
             <span>Strongly disagree, 1</span>&nbsp;<input type="range" id="postsurveyslider2" value="4" min="1" max="7" step="1" style="width: 20%; display: inline;"/>
             <span>7, Strongly Agree</span>&nbsp;
             <span id="postsurveyslider2_value">(Current selection: 4)</span>
         </li><br>
-        <li>This MS wants to understand how it’s decision affect people like me: <br>
+        <li>Wants to be accountable to people like me for its actions: <br>
             <span>Strongly disagree, 1</span>&nbsp;<input type="range" id="postsurveyslider3" value="4" min="1" max="7" step="1" style="width: 20%; display: inline;"/>
             <span>7, Strongly Agree</span>&nbsp;
             <span id="postsurveyslider3_value">(Current selection: 4)</span>
         </li><br>
-        <li>This MS wants to understand how it’s decision affect people like me: <br>
+        <li>Wants people like me to know how it moderates and why it removes certain comments: <br>
             <span>Strongly disagree, 1</span>&nbsp;<input type="range" id="postsurveyslider4" value="4" min="1" max="7" step="1" style="width: 20%; display: inline;"/>
-            <span>7, Strongly Agree</span>&nbsp;
+            <span>7. Strongly Agree</span>&nbsp;
             <span id="postsurveyslider4_value">(Current selection: 4)</span>
         </li><br>
     </ol>
-    <br><br>
-    <button id="postsurveyPagenextBtn" class="response-button"  style = "float: right; margin-right: 200px; padding: 10px;" onclick="next4buttonClicked()">Submit</button>
+    <button id="postsurveyPagenextBtn1" class="response-button"  style = "float: right; margin-right: 200px; padding: 10px;" onclick="next4button1Clicked()">OK</button>
   </div>
+
+  <div id ="transparency-1-participative" class="article-text" style="display:none;">
+    <div style="font-size: 20px;"><span>Part1-> <u>Part2</u>-> Part3-> Part4-> Part5-> Part6-> Part7-> Part8-> Part9</span></div><br>
+    <ol>This moderation system - <br>
+      <li>Asks for feedback from people like me for making a moderation decision: <br>
+          <span>Strongly disagree, 1</span>&nbsp;<input type="range" id="postsurveyslider5" value="4" min="1" max="7" step="1" style="width: 20%; display: inline;"/>
+          <span>7, Strongly Agree</span>&nbsp;
+          <span id="postsurveyslider5_value">(Current selection: 4)</span>
+      </li><br>
+      <li>Involves people like me to help identify potential bad behaviors reflected in discussions: <br>
+          <span>Strongly disagree, 1</span>&nbsp;<input type="range" id="postsurveyslider6" value="4" min="1" max="7" step="1" style="width: 20%; display: inline;"/>
+          <span>7, Strongly Agree</span>&nbsp;
+          <span id="postsurveyslider6_value">(Current selection: 4)</span>
+      </li><br>
+      <li>Makes it easy to find the information about moderation process for people like me: <br>
+        <span>Strongly disagree, 1</span>&nbsp;<input type="range" id="postsurveyslider7" value="4" min="1" max="7" step="1" style="width: 20%; display: inline;"/>
+        <span>7, Strongly Agree</span>&nbsp;
+        <span id="postsurveyslider7_value">(Current selection: 4)</span>
+      </li><br>
+      <li>Provides detailed information about the moderation process: <br>
+        <span>Strongly disagree, 1</span>&nbsp;<input type="range" id="postsurveyslider8" value="4" min="1" max="7" step="1" style="width: 20%; display: inline;"/>
+        <span>7, Strongly Agree</span>&nbsp;
+        <span id="postsurveyslider8_value">(Current selection: 4)</span>
+      </li><br>
+      <li>Asks the opinions of people like me before making decisions: <br>
+          <span>Strongly disagree, 1</span>&nbsp;<input type="range" id="postsurveyslider9" value="4" min="1" max="7" step="1" style="width: 20%; display: inline;"/>
+          <span>7. Strongly Agree</span>&nbsp;
+          <span id="postsurveyslider9_value">(Current selection: 4)</span>
+      </li><br>
+    </ol>
+    <button id="postsurveyPagenextBtn2" class="response-button"  style = "float: right; margin-right: 200px; padding: 10px;" onclick="next4button2Clicked()">OK</button>
+  </div>
+
+  <div id ="transparency-2-information" class="article-text" style="display:none;">
+    <div style="font-size: 20px;"><span>Part1-> Part2-> <u>Part3</u>-> Part4-> Part5-> Part6-> Part7-> Part8-> Part9</span></div><br>
+    <ol>This moderation system - <br>
+      <li>Provides timely information regarding making or understanding a moderation decision: <br>
+          <span>Strongly disagree, 1</span>&nbsp;<input type="range" id="postsurveyslider10" value="4" min="1" max="7" step="1" style="width: 20%; display: inline;"/>
+          <span>7, Strongly Agree</span>&nbsp;
+          <span id="postsurveyslider10_value">(Current selection: 4)</span>
+      </li><br>
+      <li>Provides information that is relevant for making or understanding a moderation decision: <br>
+          <span>Strongly disagree, 1</span>&nbsp;<input type="range" id="postsurveyslider11" value="4" min="1" max="7" step="1" style="width: 20%; display: inline;"/>
+          <span>7, Strongly Agree</span>&nbsp;
+          <span id="postsurveyslider11_value">(Current selection: 4)</span>
+      </li><br>
+      <li>Provides information that is complete for making or understanding a moderation decision: <br>
+          <span>Strongly disagree, 1</span>&nbsp;<input type="range" id="postsurveyslider12" value="4" min="1" max="7" step="1" style="width: 20%; display: inline;"/>
+          <span>7, Strongly Agree</span>&nbsp;
+          <span id="postsurveyslider12_value">(Current selection: 4)</span>
+      </li><br>
+      <li>Provides information that easy to understand for people like me for making or understanding a moderation decision: <br>
+          <span>Strongly disagree, 1</span>&nbsp;<input type="range" id="postsurveyslider13" value="4" min="1" max="7" step="1" style="width: 20%; display: inline;"/>
+          <span>7. Strongly Agree</span>&nbsp;
+          <span id="postsurveyslider13_value">(Current selection: 4)</span>
+      </li><br>
+      <li>Provides information that is accurate for making or understanding a moderation decision: <br>
+        <span>Strongly disagree, 1</span>&nbsp;<input type="range" id="postsurveyslider14" value="4" min="1" max="7" step="1" style="width: 20%; display: inline;"/>
+        <span>7. Strongly Agree</span>&nbsp;
+        <span id="postsurveyslider14_value">(Current selection: 4)</span>
+      </li><br>
+      <li>Provides information that is reliable for making or understanding a moderation decision: <br>
+        <span>Strongly disagree, 1</span>&nbsp;<input type="range" id="postsurveyslider15" value="4" min="1" max="7" step="1" style="width: 20%; display: inline;"/>
+        <span>7. Strongly Agree</span>&nbsp;
+        <span id="postsurveyslider15_value">(Current selection: 4)</span>
+      </li><br>
+    </ol>
+    <button id="postsurveyPagenextBtn3" class="response-button"  style = "float: right; margin-right: 200px; padding: 10px;" onclick="next4button3Clicked()">OK</button>
+  </div>
+
+  <div id ="transparency-3-accountability" class="article-text" style="display:none;">
+    <div style="font-size: 20px;"><span>Part1-> Part2-> Part3-> <u>Part4</u>-> Part5-> Part6-> Part7-> Part8-> Part9</span></div><br>
+    <ol>This moderation system - <br>
+      <li>Is open to criticism by people like me: <br>
+          <span>Strongly disagree, 1</span>&nbsp;<input type="range" id="postsurveyslider16" value="4" min="1" max="7" step="1" style="width: 20%; display: inline;"/>
+          <span>7, Strongly Agree</span>&nbsp;
+          <span id="postsurveyslider16_value">(Current selection: 4)</span>
+      </li><br>
+      <li>Freely admits when it has made mistakes: <br>
+          <span>Strongly disagree, 1</span>&nbsp;<input type="range" id="postsurveyslider17" value="4" min="1" max="7" step="1" style="width: 20%; display: inline;"/>
+          <span>7, Strongly Agree</span>&nbsp;
+          <span id="postsurveyslider17_value">(Current selection: 4)</span>
+      </li><br>
+    </ol>
+    <button id="postsurveyPagenextBtn4" class="response-button"  style = "float: right; margin-right: 200px; padding: 10px;" onclick="next4button4Clicked()">OK</button>
+  </div>
+
+  <div id ="transparency-4-secretive" class="article-text" style="display:none;">
+    <div style="font-size: 20px;"><span>Part1-> Part2-> Part3-> Part4-> <u>Part5</u>-> Part6-> Part7-> Part8-> Part9</span></div><br>
+    <ol>This moderation system - <br>
+      <li>Often leaves out important details in the information it provides regarding content moderation to people like me: <br>
+          <span>Strongly disagree, 1</span>&nbsp;<input type="range" id="postsurveyslider18" value="4" min="1" max="7" step="1" style="width: 20%; display: inline;"/>
+          <span>7, Strongly Agree</span>&nbsp;
+          <span id="postsurveyslider18_value">(Current selection: 4)</span>
+      </li><br>
+      <li>Provides information regarding content moderation that is intentionally written in a way to make it difficult to understand how to make or understand moderation decisions: <br>
+        <span>Strongly disagree, 1</span>&nbsp;<input type="range" id="postsurveyslider19" value="4" min="1" max="7" step="1" style="width: 20%; display: inline;"/>
+        <span>7, Strongly Agree</span>&nbsp;
+        <span id="postsurveyslider19_value">(Current selection: 4)</span>
+      </li><br>
+      <li>Only discloses information regarding moderation process when it is required.<br>
+        <span>Strongly disagree, 1</span>&nbsp;<input type="range" id="postsurveyslider20" value="4" min="1" max="7" step="1" style="width: 20%; display: inline;"/>
+        <span>7, Strongly Agree</span>&nbsp;
+        <span id="postsurveyslider20_value">(Current selection: 4)</span>
+      </li><br>
+    </ol>
+    <button id="postsurveyPagenextBtn5" class="response-button"  style = "float: right; margin-right: 200px; padding: 10px;" onclick="next4button5Clicked()">OK</button>
+  </div>
+
+  <div id ="overall-trust" class="article-text" style="display:none;">
+    <div style="font-size: 20px;"><span>Part1-> Part2-> Part3-> Part4-> Part5-> <u>Part6</u>-> Part7-> Part8-> Part9</span></div><br>
+    <ol>
+      <li>I am willing to let this moderation system(MS) make decisions for people like me: <br>
+          <span>Strongly disagree, 1</span>&nbsp;<input type="range" id="postsurveyslider21" value="4" min="1" max="7" step="1" style="width: 20%; display: inline;"/>
+          <span>7, Strongly Agree</span>&nbsp;
+          <span id="postsurveyslider21_value">(Current selection: 4)</span>
+      </li><br>
+      <li>I think it is important to watch this moderation system closely so that it does not take advantage of people like me: <br>
+        <span>Strongly disagree, 1</span>&nbsp;<input type="range" id="postsurveyslider22" value="4" min="1" max="7" step="1" style="width: 20%; display: inline;"/>
+        <span>7, Strongly Agree</span>&nbsp;
+        <span id="postsurveyslider22_value">(Current selection: 4)</span>
+      </li><br>
+    </ol>
+    <button id="postsurveyPagenextBtn6" class="response-button"  style = "float: right; margin-right: 200px; padding: 10px;" onclick="next4button6Clicked()">OK</button>
+  </div>
+
+  <div id ="trust-1-competence" class="article-text" style="display:none;">
+    <div style="font-size: 20px;"><span>Part1-> Part2-> Part3-> Part4-> Part5-> Part6-> <u>Part7</u>-> Part8-> Part9</span></div><br>
+    <ol>
+      <li>?? <br>
+          <span>Strongly disagree, 1</span>&nbsp;<input type="range" id="postsurveyslider1" value="4" min="1" max="7" step="1" style="width: 20%; display: inline;"/>
+          <span>7, Strongly Agree</span>&nbsp;
+          <span id="postsurveyslider1_value">(Current selection: 4)</span>
+      </li><br>
+    </ol>
+    <button id="postsurveyPagenextBtn7" class="response-button"  style = "float: right; margin-right: 200px; padding: 10px;" onclick="next4button7Clicked()">OK</button>
+  </div>
+
+  <div id ="trust-2-integrity" class="article-text" style="display:none;">
+    <div style="font-size: 20px;"><span>Part1-> Part2-> Part3-> Part4-> Part5-> Part6-> Part7-> <u>Part8</u>-> Part9</span></div><br>
+    <ol>
+      <li>?? <br>
+          <span>Strongly disagree, 1</span>&nbsp;<input type="range" id="postsurveyslider1" value="4" min="1" max="7" step="1" style="width: 20%; display: inline;"/>
+          <span>7, Strongly Agree</span>&nbsp;
+          <span id="postsurveyslider1_value">(Current selection: 4)</span>
+      </li><br>
+    </ol>
+    <button id="postsurveyPagenextBtn8" class="response-button"  style = "float: right; margin-right: 200px; padding: 10px;" onclick="next4button8Clicked()">OK</button>
+  </div>
+
+  <div id ="trust-3-goodwill" class="article-text" style="display:none;">
+    <div style="font-size: 20px;"><span>Part1-> Part2-> Part3-> Part4-> Part5-> Part6-> Part7-> Part8-> <u>Part9</u></span></div><br>
+    <ol>
+      <li>Whenever this MS makes a decision to ban a comment I know it will be concerned about providing quality discussion environment for people like me: <br>
+          <span>Strongly disagree, 1</span>&nbsp;<input type="range" id="postsurveyslider1" value="4" min="1" max="7" step="1" style="width: 20%; display: inline;"/>
+          <span>7, Strongly Agree</span>&nbsp;
+          <span id="postsurveyslider1_value">(Current selection: 4)</span>
+      </li><br>
+      <li>I believe this MS takes the opinions of people like me into account when making decisions: <br>
+        <span>Strongly disagree, 1</span>&nbsp;<input type="range" id="postsurveyslider1" value="4" min="1" max="7" step="1" style="width: 20%; display: inline;"/>
+        <span>7, Strongly Agree</span>&nbsp;
+        <span id="postsurveyslider1_value">(Current selection: 4)</span>
+      </li><br>
+    </ol>
+    <button id="postsurveyPagenextBtn9" class="response-button"  style = "float: right; margin-right: 200px; padding: 10px;" onclick="next4button9Clicked()">SUBMIT</button>
+  </div>
+
+  <!-- <br><br>
+  <button id="postsurveyPagenextBtn" class="response-button"  style = "float: right; margin-right: 200px; padding: 10px;" onclick="next4buttonClicked()">Submit</button> -->
 
 </body>
 
