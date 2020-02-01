@@ -1,84 +1,112 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<style>
-			.button {
-				display: inline-block;
-				padding: 8px 12px;
-				font-size: 20px;
-				cursor: pointer;
-				text-align: center;
-				text-decoration: none;
-				outline: none;
-				color: #fff;
-		        background-color: #406FC7;
-			    border: none;
-				border-radius: 10px;
-				box-shadow: 0 5px #999;
-			}
+<!DOCTYPE HTML>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- Hi, Jon Here. Please DELETE the two <script> tags below if you use this HTML, otherwise my analytics will track your page -->
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-7580334-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-			.button:hover {background-color: #1E355F}
+    gtag('config', 'UA-7580334-2');
+  </script>
 
-			.button:active {
-			  background-color: #192C4F;
-			  box-shadow: 0 5px #666;
-			  transform: translateY(4px);
-			}
+  <title>Jibon Naher</title>
+  
+  <meta name="author" content="Jibon Naher">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <link rel="icon" type="image/png" href="images/Jibon.png">
+</head>
 
-			.split {
-			    height: 100%;
-			    
-			    position: fixed;
-			    z-index: 1;
-			    top: 0;
-			    overflow-x: hidden;
-			    padding-top: 20px;
-			}
+<body>
+  <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+    <tr style="padding:0px">
+      <td style="padding:0px">
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          <tr style="padding:0px">
+            <td style="padding:2.5%;width:63%;vertical-align:middle">
+              <p style="text-align:center">
+                <name>Jibon Naher</name>
+              </p>
+              <p>I am an MS student at <a href="http://www.kaist.edu/">KAIST</a>, at <a href="https://cs.kaist.ac.kr/">School of Computing</a>. I am working on social computing, with <a href="https://juhokim.com/">Professor Juho Kim</a>.
+              </p>
+              <p>
+                I did my Bachelor in <a href="https://cse.buet.ac.bd/">CSE</a> from <a href="https://www.buet.ac.bd/">BUET</a>. I worked as a lecturer in <a href="https://www.cuet.ac.bd/">CUET</a> and <a href="https://green.edu.bd/">GUB</a>.
+              </p>
+              <p style="text-align:center">
+                <a href="mailto:jibon.naher09@gmail.com">Email</a> &nbsp/&nbsp
+                <a href="https://github.com/jibonnaher/">GitHub</a> &nbsp/&nbsp
+                <a href="https://scholar.google.com/citations?user=RdJ44SgAAAAJ&hl=en">Google Scholar</a>
+              </p>
+            </td>
+            <td style="padding:2.5%;width:40%;max-width:40%">
+              <!--a href="images/MRMinar.jpg"><img style="width:100%;max-width:100%" alt="profile photo" src="images/Minar.jpg" class="hoverZoomLink"></a-->
+              <img style="width:100%;max-width:100%" alt="profile photo" src="images/Jibon.jpg">
+            </td>
+          </tr>
+        </tbody></table>
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+            <tr>
+            <td style="padding:20px;width:100%;vertical-align:middle">
+              <heading>Research</heading>
+              <p>
+                I'm interested in content moderation, social computing, human-computer interaction, and artificial intelligence.
+              </p>
+            </td>
+          </tr>
+        </tbody></table>
 
-			.left {
-				width: 70%;
-			    left: 0;
-			}
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+          <tbody>
 
-			.right {
-				width: 30%;
-			    right: 0;
-			}
-		</style>
-		<script>
-		var x = 0
-		function myFunction() {
-			x = x+2
-		    document.getElementById("number").innerHTML = x
-		}
-		</script>
-	</head>
+              <tr onmouseout="portrait_stop()" onmouseover="portrait_start()">
+                  <td style="padding:20px;width:25%;vertical-align:middle">
+                    <div class="one">
+                      <div class="two" id='portrait_image'><img src='images/cscw19.jpg'></div>
+                      <img src='images/cscw19.jpg'>
+                    </div>
+                    <script type="text/javascript">
+                      function portrait_start() {
+                        document.getElementById('portrait_image').style.opacity = "1";
+                      }
+      
+                      function portrait_stop() {
+                        document.getElementById('portrait_image').style.opacity = "0";
+                      }
+                      portrait_stop()
+                    </script>
+                  </td>
+                  <td style="padding:20px;width:75%;vertical-align:middle">
+                    <a href="https://kixlab.github.io/website-files/2019/cscw2019-workshop-ContestabilityDesign-paper.pdf">
+                      <papertitle>Improving Users’ Algorithmic Understandability and Trust in Content Moderation</papertitle>
+                    </a>
+                    <br>
+                    <a href="https://jibonnaher.github.io/">Jibon Naher</a>,
+                    <a href="https://an-t-hyeon.github.io/">Taehyeon An</a>,
+                    <a href="https://juhokim.com/">Juho Kim</a>
+                    <br>
+                    <em>CSCW Workshop</em>, 2019
+                    <br>
+                    <p></p>
+                    <!--p>Main comment.</p>
+                    <p>sub comment</p-->
+                  </td>
+                </tr>
 
-	<body background="background3.jpeg" style="background-repeat: no-repeat; background-size:cover;">
+            </tbody>
+        </table>
 
-			<div class ="split left">
-				<center>
-					<div>
-						<br>
-						<h1 style = "font: monospace;font-size:45px;color: rgb(5,100,200);">Let's do something</h1>
-						<h3 style = "font-size:30px;"> Prevail Justice </h3>
-					</div>
-					<div>
-						<img id="myImage" src="Scale-PNG-HD.png" style="width:150px; height: 150px">
-					</div>
-					<div>
-						<p id="demo" style = "font-size: 25px">Do you think the treasure should be shared with everyone</p>
-						<br><br>
-						<button type="button" class ="button" onclick="myFunction()">YES</button>
-						<button type="button" class ="button" onclick="">NO</button>
-						<!-- p id = "number"> </p> -->
-					</div>
-				</center>
-			</div>
-
-			<div class ="split right">
-				<p id = "number"> </p>
-			</div>
-
-	</body>
-</html>
+        
+		<table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+          <tbody><tr>
+            <td style="padding:0px">
+              <br>
+              <p style="text-align:center;font-size:small;">
+                Taken from <a style="font-size:small;" href="https://jonbarron.info">Jon Barron</a>
+              </p>
+            </td>
+          </tr>
+        </tbody></table>
+          

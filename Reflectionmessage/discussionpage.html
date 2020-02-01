@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="./styles/exercise_style.css">
+  <!-- <link href="http://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+  <script src="./scripts/discussionpage_scripts.js"></script>
+
+  <title>Discussion Interface</title>
+</head>
+<body style="margin-top:50px !important;">
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-firestore.js">
+    const firebase = require("firebase");
+    // Required for side-effects
+    require("firebase/firestore");
+  </script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+
+  <script>
+    // Your web app's Firebase configuration
+
+    var firebaseConfig = {
+      apiKey: "AIzaSyDOt8cG1zUH70E1ru0e10gfVNaLF10kN0s",
+      authDomain: "discussioninterface.firebaseapp.com",
+      databaseURL: "https://discussioninterface.firebaseio.com",
+      projectId: "discussioninterface",
+      storageBucket: "",
+      messagingSenderId: "315250173270",
+      appId: "1:315250173270:web:a359c74adfc7f76543a2f7"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
+
+  <div id="main-content">
+    <div id="topdesc" ><u><span style="background-color: #40E0D0;">STEP#2:</span> JOIN DISCUSSION </u></div> <br>
+    <div id="topdesc">Dong-A Ilbo :</div>
+    <div id="headline">Gender confrontation over extra points for military service</div>
+    <div id="author-break"></div>
+  </div>
+  <br>
+  <div id="headline-article-break"></div>
+  <div class="article-text">
+    Korea is likely to be divided into two over an issue. Recently, the Military Culture Reform Committee, a private, public and military joint organization, proposed a recommendation to give extra points for compensation to those who completed military service. It seems quite natural that a heated controversy is caused over this recommendation.<br>
+    <br>
+    The military service is imposed only to men among four duties of a citizen. Since the military service is mandatory for men but optional for women, controversy over gender equality starts from here.<br>
+    <br>
+    After exhausted 2 years in the military camp, those young men end up with a gap in their education and preparation for employment. As long as there is no change in the current conscription system, people who sacrificed their youth for nation must not be put at a disadvantage, if not compensated properly.
+  </div>
+
+<div id="article-break"> </div>
+
+<div id="comment-section">
+    <div id="comment-header">Comments</div>
+    <br>
+    <div id="comment1" class="comment-box">
+    <div class="comment-username">User 2647   <a>(35 minutes ago)</a></div>
+    <div class="comment-text">Stop discriminating against women and the disabled. We have to consider the both sides of the argument and reorganize the program</div>
+    <!-- <div class="comment-interactions secondary-interactions">
+        <button id="reply-button-1" class="response-button reply-button" onclick="buttonClicked('reply', this)">Reply</button>
+        <button id="downvote-button-1" class="response-button" onclick="buttonClicked('downvote', this);">
+        <img id="downvote-comment-icon-1" class="button-icon" src='./resources/downvote.png'> Downvote</button>
+        <button id="upvote-button-1" class="response-button" onclick="buttonClicked('upvote', this);">
+        <img id="upvote-comment-icon-1" class="button-icon" src='./resources/upvote.png'>Upvote</button>
+        <button id="report-button-1" class="response-button" onclick="buttonClicked('report', this);">
+        <img id="report-icon-1" class="button-icon" src="./resources/flag.png">Report</button>
+    </div> -->
+
+    <div class="user-comment-spacer"></div>
+    </div>
+
+    <div id="comment3" class="comment-box">
+    <div class="comment-username">User 3018   <a>(18 minutes ago)</a></div>
+    <div class="comment-text">You idiots... It is unworthy to force men to do their duty without any benefit.</div>
+    <!-- <div class="comment-interactions secondary-interactions">
+        <button id="reply-button-3" class="response-button reply-button" onclick="buttonClicked('reply', this)">Reply</button>
+        <button id="downvote-button-3" class="response-button" onclick="buttonClicked('downvote', this);">
+        <img id="downvote-comment-icon-3" class="button-icon" src='./resources/downvote.png'> Downvote</button>
+        <button id="upvote-button-3" class="response-button" onclick="buttonClicked('upvote', this);">
+        <img id="upvote-comment-icon-3" class="button-icon" src='./resources/upvote.png'> Upvote</button>
+        <button id="report-button-3" class="response-button" onclick="buttonClicked('report', this);">
+        <img id="report-icon-1" class="button-icon" src="./resources/flag.png">Report</button>
+    </div> -->
+
+    <div class="user-comment-spacer"></div>
+    </div>
+
+    <div id="comment4" class="comment-box">
+    <div class="comment-username">User 5472   <a>(7 minutes ago)</a></div>
+    <div class="comment-text">Calm down. What most people say is that the benefits should be given, but the method is wrong.</div>
+    <!-- <div class="comment-interactions secondary-interactions">
+        <button id="reply-button-4" class="response-button reply-button" onclick="buttonClicked('reply', this)">Reply</button>
+        <button id="downvote-button-4" class="response-button" onclick="buttonClicked('downvote', this);">
+        <img id="downvote-comment-icon-4" class="button-icon" src='./resources/downvote.png'> Downvote</button>
+        <button id="upvote-button-4" class="response-button" onclick="buttonClicked('upvote', this);">
+        <img id="upvote-comment-icon-4" class="button-icon" src='./resources/upvote.png'> Upvote</button>
+        <button id="report-button-4" class="response-button" onclick="buttonClicked('report', this);">
+        <img id="report-icon-1" class="button-icon" src="./resources/flag.png">Report</button>
+    </div> -->
+
+    <div class="user-comment-spacer"></div>
+    </div>
+</div>
+
+<div id="comment-section-break"></div>
+
+<div id="comment-submission">
+    <div id="comment-submission-title"><img id="comment-submission-icon" src="./resources/commentBubble.png"> Comment</div>
+</div>
+
+<div class="reply-out">
+
+    <div class="comment-reply reply-in1">
+    <div style = "float:left; width: 80%;">
+        <textarea id="comment-textarea" placeholder="Join the discussion" class="reply-textarea"></textarea>
+    </div>
+
+    <div style = "float:left; width: 20%;">
+        <p id = "hideP">
+            <span id = "emojiSpan" style="font-size: 20px;"></span>
+            <span id = "scoreSpan"></span>
+        </p>
+        <button id="description" style="visibility:hidden;" data-toggle="tooltip" title="What's this emoji and score mean?"><img src='./resources/question.png' style="width:30px;height:25px;"></button>
+    </div>
+    </div>
+    <div style="float: right;">
+    <button id="comment-submit-button-1" class="reply-in2 response-button" onclick="buttonClicked('comment-submit', this)">Comment</button>
+    </div>
+</div>
+<div>
+    <button id="discussionPagenextBtn" class="response-button"  style = "float: right; margin: 10px; visibility: hidden;" onclick="next3buttonClicked()">NEXT</button>
+</div>
+
+
+  <!-- <div id="myModal" class="modal">
+
+    <div class="modal-content">
+
+      <span class="close">&times;</span>
+      <div>
+        <br>
+        What should be the toxicity in your opinion: <input type="range" id="slider" value="50" min="0" max="100" step="1" />
+        <span id="slider_value">50%</span>
+        <br><br><div>Please explain the reason for your choice. It will help us to update the ML model after reviewing by the moderator:</div>
+        <br><div><textarea id  = "userScoreReason" placeholder="Please explain the reason for your choice"></textarea></div><br><br>
+        I wish I can see: <br>
+        <input type="checkbox" name="option" value="option1"> Some example having higher and lower than this one<br>
+        <input type="checkbox" name="option" value="option2"> Some of the highest and lowest scored examples <br>
+        <input type="checkbox" name="option" value="option3"> Some example having the same score as this one <br>
+        <input type="checkbox" name="option" value="option4"> Lots of more example to test from the dataset <br>
+        Other <input type ="text" id = "otherOption" placeholder="please specify"><br><br>
+        <br><button id ="feedbackBtn" onclick="feedback()">Submit</button>
+      </div> -->
+      <!-- <h1 style="text-align: center">You need to know</h1>
+      <p>What is this value:</p>
+
+      <p>How it is calculated:</p>
+
+      <p>How it can be used in the moderation:</p>
+
+      <h1 style="text-align: center">Your feedback</h1>
+
+      <p>What is your position on the value:</p>
+
+      <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+      <span> Score : </span><span id="user_score"></span>
+
+      <p>Why do you think so:</p>
+      <textarea id="feedback" style="width:95%;height:80px;"></textarea>
+      <br>
+      <button onclick="sendfeedback()">Submit</button> -->
+
+    <!-- </div>
+
+  </div> -->
+
+  <div id="myModal-1" class="modal">
+
+    <div class="modal-content">
+
+      <span class="close">&times;</span>
+      <div>
+        <h3>Review process of the algorithm toxicity score</h3>
+        The current score of your comment from the algorithm: <span id = "modalscoreSpan"></span> <br>
+        In the moderation process:
+        <ul>
+          <li>Normally, it was found that comments having score < 20% do not need moderators review </li>
+          <li>Majority of comments having score > 90% are removed after reviewing by the moderators </li>
+          <li>Comments having score between 20% to 90% are carefully reviewed by the moderators always </li>
+        </ul>
+        <h3>Please give your feedback on the Score</h3>
+        Please give your valuable feedback about the score. This algorithm can make mistake, your feedback will help us to update the algorithm
+        <br>
+        <ul>
+          <li>
+            What should be the toxicity in your opinion: <br>
+            <input type="range" id="slider" value="0.5" min="0" max="1" step="0.01" style="width: 50%; display: inline;"/>
+            <span id="slider_value">0.5</span>
+          </li>
+          <li>
+            <div>Please explain the reason for your choice. It will help us to update the algorithm:</div>
+            <br><div><textarea id  = "userScoreReason" placeholder="Please explain the reason for your choice"></textarea></div>
+          </li>
+          <li>
+            I wish I can see: <br>
+            <input type="checkbox" name="option" value="option1" class ="dummyClass"> Some examples having higher and lower than this one<br>
+            <input type="checkbox" name="option" value="option2" class ="dummyClass"> Some of the highest and lowest scored examples <br>
+            <input type="checkbox" name="option" value="option3" class ="dummyClass"> Some examples having the same score as this one <br>
+            Other <input type ="text" id = "otherOption" placeholder="please specify"><br><br>
+          </li>
+        <br><button id ="feedbackBtn" onclick="feedback()">Submit</button>
+      </div>
+      <!-- <h1 style="text-align: center">You need to know</h1>
+      <p>What is this value:</p>
+
+      <p>How it is calculated:</p>
+
+      <p>How it can be used in the moderation:</p>
+
+      <h1 style="text-align: center">Your feedback</h1>
+
+      <p>What is your position on the value:</p>
+
+      <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+      <span> Score : </span><span id="user_score"></span>
+
+      <p>Why do you think so:</p>
+      <textarea id="feedback" style="width:95%;height:80px;"></textarea>
+      <br>
+      <button onclick="sendfeedback()">Submit</button> -->
+
+    </div>
+
+  </div>
+<!-- 
+  <script>
+    // Get the modal
+   var modal = document.getElementById('myModal');
+   // Get the button that opens the modal
+   var btn = document.getElementById("disagreeBtn");
+   // Get the <span> element that closes the modal
+   var span = document.getElementsByClassName("close")[0];
+   // When the user clicks on the button, open the modal
+   btn.onclick = function() {
+     modal.style.display = "block";
+   }
+   // When the user clicks on <span> (x), close the modal
+   span.onclick = function() {
+       modal.style.display = "none";
+   }
+   // When the user clicks anywhere outside of the modal, close it
+   window.onclick = function(event) {
+       if (event.target == modal) {
+           modal.style.display = "none";
+       }
+   }-->
+<script>
+   // Get the modal
+  var modal1 = document.getElementById('myModal-1');
+  // Get the button that opens the modal
+  var btn1 = document.getElementById("description");
+  // Get the <span> element that closes the modal
+  var span1 = document.getElementsByClassName("close")[0];
+  // When the user clicks on the button, open the modal
+  btn1.onclick = function() {
+    $("#description").css("visibility", "hidden");
+    $("#modalscoreSpan").text($("#scoreSpan").text());
+    $("#slider").val("0.5");
+    $('#slider_value').html( $("#slider").val() );
+    $("#userScoreReason").val("");
+
+    var checkboxes = document.getElementsByClassName("dummyClass");    //checkbox items
+    for (i = 0; i < checkboxes.length; i++) { 
+      checkboxes[i].checked = false;
+    }
+
+    modal1.style.display = "block";
+  }
+  // When the user clicks on <span> (x), close the modal
+  span1.onclick = function() {
+      modal1.style.display = "none";
+      $("#description").css("visibility", "visible");
+  }
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+      if (event.target == modal1) {
+          modal1.style.display = "none";
+          $("#description").css("visibility", "visible");
+      }
+  }
+
+  </script>
+
+
+
+  <!--   csv file test
+<script>
+var data = [
+   ['Foo', 'programmer'],
+   ['Bar', 'bus driver'],
+   ['Moo', 'Reindeer Hunter']
+];
+
+
+function download_csv() {
+    var csv = 'Name,Title\n';
+    data.forEach(function(row) {
+            csv += row.join(',');
+            csv += "\n";
+    });
+
+    console.log(csv);
+    var hiddenElement = document.createElement('a');
+    hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+    hiddenElement.target = '_blank';
+    hiddenElement.download = 'people.csv';
+    hiddenElement.click();
+}
+</script>
+
+<button onclick="download_csv()">Download CSV</button> -->
+
+<!--  get checkbox values
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("button").click(function(){
+            var favorite = [];
+            $.each($("input[name='sport']:checked"), function(){
+                favorite.push($(this).val());
+            });
+            alert("My favourite sports are: " + favorite.join(", "));
+        });
+    });
+</script> -->
+
+<script>
+
+    window.onload=function(){
+      //window.alert("welcome, "+localStorage.username);
+
+        // if (localStorage.clickcount){
+
+        //     if(localStorage.clickcount > 0){
+        //         localStorage.clickcount = 0;
+        //         window.alert("You will be back to the instruction page. Please start again from there!");
+        //         window.location.href = "index.html";
+        //     }
+        //     else{
+        //         window.alert("Please don't reload this page, if you do, you have to start again from the instruciton page");
+        //         localStorage.clickcount = Number(localStorage.clickcount)+1;
+        //     }
+        // }
+        // else{
+        //     localStorage.clickcount = 0;
+        // }
+    };
+</script>
+
+</body>
+
+</html>
