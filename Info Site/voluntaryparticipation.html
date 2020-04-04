@@ -7,6 +7,34 @@
   <meta name="keywords" content="website keywords, website keywords" />
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <link rel="stylesheet" type="text/css" href="style/style.css" title="style" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-firestore.js">
+    const firebase = require("firebase");
+    // Required for side-effects
+    require("firebase/firestore");
+  </script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+    apiKey: "AIzaSyDOt8cG1zUH70E1ru0e10gfVNaLF10kN0s",
+    authDomain: "discussioninterface.firebaseapp.com",
+    databaseURL: "https://discussioninterface.firebaseio.com",
+    projectId: "discussioninterface",
+    storageBucket: "discussioninterface.appspot.com",
+    messagingSenderId: "315250173270",
+    appId: "1:315250173270:web:48c039c25bf381ba43a2f7"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
+  <script src="scriptfile.js"></script>
 </head>
 
 <body>
@@ -33,7 +61,8 @@
       <div id="content">
         <!-- insert the page content here -->
         <h1>Voluntary Participation</h1>
-        <p>You are free to choose whether we can use the collected comment data or not. Since the data is publicly available, if you don't provide any information, by default, we will consider the selection is <b>Yes</b>.</p>
+        <p>You are free to choose whether we can use the collected comment data or not. Since the data is publicly available, 
+          if you don't provide any option, by default, we will consider the selection as <b>Yes</b>.</p>
         <p>Please pick an option, and provide your reddit username, we will take action accordingly. 
         <br> <br>Can we use the comment data for research purpose:<br>
         <input type="radio" id="yes" name="choice" value="Yes" checked="checked">
@@ -44,7 +73,7 @@
         <label for="username">Your reddit username</label>
         <input type="text" id="un" name="un"><br><br> </p>
 
-        <input type="submit" value="Submit" onclick="">
+        <input type="submit" value="Submit" onclick="submitConsent()">
 
       </div>
     </div>
